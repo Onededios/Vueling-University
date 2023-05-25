@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "d7ab0c8d-4763-4ff9-ab5b-98c2743738d3",
+		"name": "API ReqRes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27570576"
+	},
+	"item": [
+		{
+			"name": "Gets",
+			"item": [
+				{
+					"name": "Get All Users From Page 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"validateGetResponse(pm);\r",
+									"validateAllResponse(pm.response.code);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPoint}}?page=1",
+							"host": [
+								"{{mainURL}}{{endPoint}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"validateGetResponse(pm);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPoint}}/4",
+							"host": [
+								"{{mainURL}}{{endPoint}}"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"validatePostResponse(pm);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}{{endPoint}}",
+							"host": [
+								"{{mainURL}}{{endPoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"validatePostResponse(pm);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}register",
+							"host": [
+								"{{mainURL}}register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deletes",
+			"item": [
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"validateDelResponse(pm);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPoint}}/1",
+							"host": [
+								"{{mainURL}}{{endPoint}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Updates",
+			"item": [
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"validatePutResponse(pm);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}{{endPoint}}/2",
+							"host": [
+								"{{mainURL}}{{endPoint}}"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"validateGetResponse = function (pm) { ",
+					"    pm.test(\"Status code is 200\", function () { ",
+					"        pm.response.to.have.status(200); ",
+					"        }); ",
+					"    }",
+					"",
+					"validatePutResponse = function (pm) { ",
+					"    pm.test(\"Status code is 200\", function () { ",
+					"        pm.response.to.have.status(200); ",
+					"        }); ",
+					"    }",
+					"",
+					"validatePostResponse = function (pm) { ",
+					"    pm.test(\"Status code is 201\", function () { ",
+					"        pm.response.to.have.status(201); ",
+					"        }); ",
+					"    }",
+					"",
+					"validateDelResponse = function (pm) { ",
+					"    pm.test(\"Status code is 204\", function () { ",
+					"        pm.response.to.have.status(204); ",
+					"        }); ",
+					"    }",
+					"",
+					"validateAllResponse = function (pm) {",
+					"    if (300 > pm >= 200) {return true;}",
+					"    return false;",
+					"}"
+				]
+			}
+		}
+	]
+}
