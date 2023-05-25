@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "d08310b5-c983-4580-aba3-765ada97d32d",
+		"name": "API Pokemon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27570576"
+	},
+	"item": [
+		{
+			"name": "Get Pokemon Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"comprobePokemonName(\"metagross\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mainURL}}{{endPoint}}metagross",
+					"host": [
+						"{{mainURL}}{{endPoint}}metagross"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"let mainJson = JSON.parse(responseBody);",
+					"",
+					"function comprobePokemonName(pokemonName) {",
+					"    pm.test (\"Pokemon name equals with your arg\", function() {",
+					"        if (mainJson.forms[0].name === pokemonName) {",
+					"            console.log(\"Funka\");",
+					"        }",
+					"        else {",
+					"            console.log(\"No funka\");",
+					"        }",
+					"    });",
+					"}"
+				]
+			}
+		}
+	]
+}
