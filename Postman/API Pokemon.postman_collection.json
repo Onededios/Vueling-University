@@ -7,29 +7,243 @@
 	},
 	"item": [
 		{
-			"name": "Get Pokemon Name",
-			"event": [
+			"name": "Ejercicios 26/07/23",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"comprobePokemonName(\"metagross\");"
-						],
-						"type": "text/javascript"
-					}
+					"name": "Ejercicio 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Test to validate the type of the movement\", comprobeMovType(pm.environment.get(\"movType\"), mainJson));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"movType\", \"normal\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}move/1",
+							"host": [
+								"{{mainURL}}move"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ejercicio 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test (\"Test that evaluates that the pokemon has the abilty\", comprobePokemonAb(pm.environment.get(\"abName\"), mainJson));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"abName\", \"overgrow\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}pokemon/1",
+							"host": [
+								"{{mainURL}}pokemon"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ejercicio 3 - Chunguisimo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}/pokemon/1",
+							"host": [
+								"{{mainURL}}"
+							],
+							"path": [
+								"pokemon",
+								"1"
+							]
+						},
+						"description": "StartFragment\n\nObtener el pokemon (nombre) más rápido (stat base) y cuánto es (numero).\n\nTest: Comprobar que el pokemon X tiene una velocidad X.\n\nEndFragme"
+					},
+					"response": []
+				},
+				{
+					"name": "Ejercicio 4",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"movementQTY\", 50);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test (\"All pokemon have more than \"+pm.environment.get(\"movementQTY\")+\" movements\", comprobeMovQTY(pm.environment.get(\"movementQTY\"), mainJson));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}pokemon/1",
+							"host": [
+								"{{mainURL}}pokemon"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "StartFragment\n\nObtener la lista de movimientos de un Pokémon y validar el número de movimientos  \n  \n    Tests: los que veais necesarios y validar que el número de movimientos sea X (menos que, mayor que, igual a X....etc)\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Ejercicio 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test (\"Test that comprobes that all types have more than 50 pokemons\", getAllTypes(mainJson));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}type",
+							"host": [
+								"{{mainURL}}type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ejercicio 6",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"specificRegion\", \"kanto\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"console.log(getSpecificRegion(pm.globals.get(\"specificRegion\")));\r",
+									"\r",
+									"// Coger Json de la URL actual\r",
+									"\r",
+									"// Filtrar por Kanto y coger la URL asignada\r",
+									"\r",
+									"// Entrar a la URL y coger el Json\r",
+									"\r",
+									"// Filtrar por pokemon y coger el Json\r",
+									"\r",
+									"// De ese pokemon, mirar si tiene habilidades ocultas\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}pokedex",
+							"host": [
+								"{{mainURL}}pokedex"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{mainURL}}{{endPoint}}metagross",
-					"host": [
-						"{{mainURL}}{{endPoint}}metagross"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [
@@ -38,7 +252,50 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"validateGetResponse = function (pm) { ",
+					"        pm.response.to.have.status(200); ",
+					"    }",
+					"",
+					"comprobePokemonName = function (pokemonName, Json) {",
+					"    pm.expect(Json.forms[0].name).to.equal(pokemonName);",
+					"}",
+					"",
+					"comprobeMovType = function (movType, Json) {",
+					"    pm.expect(Json.type.name).to.equal(movType);",
+					"}",
+					"",
+					"comprobePokemonAb = function (abName, Json) {    ",
+					"    pm.expect(Json.abilities[0].ability.name).to.equal(abName);",
+					"}",
+					"",
+					"comprobeMovQTY = function (qty, Json) {",
+					"    pm.expect(Json.moves.length).to.be.greaterThan(qty);",
+					"}",
+					"",
+					"getAllTypes = function (Json) {",
+					"    for (let i = 0; i < Json.results.length; i++) {",
+					"        let typeURL = pm.environment.get(\"mainURL\") + 'type/' + i;",
+					"        pm.sendRequest({ method: 'GET', url: typeURL }, function (err, response) {",
+					"            if (err) {",
+					"                console.error(err);",
+					"            } else {",
+					"                const responseBody = response.json();",
+					"                pm.expect(responseBody.pokemon.length).to.be.greaterThan(50);",
+					"            }",
+					"        });",
+					"    }",
+					"}",
+					"",
+					"getSpecificRegion = function(region) {",
+					"    let typeURL = pm.environment.get(\"mainURL\")+\"pokedex/\"+region;",
+					"    pm.sendRequest({ method: 'GET', url: typeURL }, function (err, response) {",
+					"                if (err) {",
+					"                    console.error(err);",
+					"                } else {",
+					"                    return response.json();",
+					"                }",
+					"            });",
+					"}"
 				]
 			}
 		},
@@ -47,18 +304,8 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"let mainJson = JSON.parse(responseBody);",
-					"",
-					"function comprobePokemonName(pokemonName) {",
-					"    pm.test (\"Pokemon name equals with your arg\", function() {",
-					"        if (mainJson.forms[0].name === pokemonName) {",
-					"            console.log(\"Funka\");",
-					"        }",
-					"        else {",
-					"            console.log(\"No funka\");",
-					"        }",
-					"    });",
-					"}"
+					"pm.test(\"Test to validate the gest response\", validateGetResponse(pm));",
+					""
 				]
 			}
 		}
