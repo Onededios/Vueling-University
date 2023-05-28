@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "489f99b6-afce-4cfc-a225-2110e9dddb32",
+		"name": "API SimpleBooks",
+		"description": "StartFragment\n\n[https://github.com/vdespa/introduction-to-postman-course/blob/main/simple-books-api.md](https://github.com/vdespa/introduction-to-postman-course/blob/main/simple-books-api.md)\n\nEndFragme",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27570576"
+	},
+	"item": [
+		{
+			"name": "Status",
+			"item": [
+				{
+					"name": "Get API Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointStatus}}",
+							"host": [
+								"{{mainURL}}{{endPointStatus}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get All Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Not an empty Json\", valNotEmptyJson(mainJson));\r",
+									"\r",
+									"if (valNotEmptyJson(mainJson)) {\r",
+									"    pm.test(\"All book fields are correct\", valAllBookFieldsJson(mainJson));\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointBooks}}",
+							"host": [
+								"{{mainURL}}{{endPointBooks}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"if (pm.response.code === 200) {\r",
+									"    pm.test(\"Book fields are correct\", valBookFields(mainJson));\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointBooks}}/:id",
+							"host": [
+								"{{mainURL}}{{endPointBooks}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order - Falta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verificar que se haya creado un nuevo pedido en la base de datos.\r",
+									"// Verificar que los detalles del pedido creado coincidan con los datos enviados."
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": 1,\r\n    \"customerName\": \"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}{{endPointOrders}}",
+							"host": [
+								"{{mainURL}}{{endPointOrders}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Not an empty Json\", valNotEmptyJson(mainJson));\r",
+									"\r",
+									"if (valNotEmptyJson(mainJson)) {\r",
+									"    pm.test(\"All orders fields are correct\", valAllOrdersieldsJson(mainJson));\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointOrders}}",
+							"host": [
+								"{{mainURL}}{{endPointOrders}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"if (pm.response.code === 200) {\r",
+									"    pm.test(\"Order fields are correct\", valOrderFields(mainJson));\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointOrders}}/:id",
+							"host": [
+								"{{mainURL}}{{endPointOrders}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ifBDeUHyrWAQjH_tOJBwo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update customer name on Order - Falta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verificar que los detalles del pedido actualizado coincidan con los datos enviados.\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}{{endPointOrders}}/:id",
+							"host": [
+								"{{mainURL}}{{endPointOrders}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ifBDeUHyrWAQjH_tOJBwo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Single Order - Falta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verificar que el pedido ha sido eliminado"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointOrders}}/:id",
+							"host": [
+								"{{mainURL}}{{endPointOrders}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "byKFvNlg8s3d6ZI_oXelV"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register New Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"clientName\": \"{{clientName}}\",\r\n    \"clientEmail\": \"{{clientEmail}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mainURL}}{{endPointClients}}",
+					"host": [
+						"{{mainURL}}{{endPointClients}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"valResponseCode = function(pm) { ",
+					"        pm.expect(pm.response.code).to.be.oneOf([200, 201, 204, 404, 409]);",
+					"}",
+					"",
+					"valResponseText = function(pm) {",
+					"    switch (pm.response.code) {",
+					"        // For GET",
+					"        case 200:",
+					"            pm.expect(pm.response.status).to.eql('OK');",
+					"            break;",
+					"        // For POST",
+					"        case 201:",
+					"            pm.expect(pm.response.status).to.eql('Created');",
+					"            break;",
+					"        // For DELETE and PATCH",
+					"        case 204:",
+					"            pm.expect(pm.response.status).to.eql('No Content');",
+					"            break;",
+					"        // Not found",
+					"        case 404:",
+					"            pm.expect(pm.response.status).to.eql('Not Found');",
+					"            break;",
+					"        // User Already Exists",
+					"        case 409:",
+					"            pm.expect(pm.response.status).to.eql('Conflict');",
+					"            break;",
+					"    }",
+					"}",
+					"",
+					"valHasAuthHeader = function(pm) {",
+					"    pm.expect(pm.request.headers.has('Authorization')).to.be.true;",
+					"}",
+					"",
+					"valAuthHeaderContent = function(pm) {",
+					"    pm.expect(pm.request.headers.get('Authorization').toString()).to.eql('Bearer '+pm.environment.get('token'));",
+					"}",
+					"",
+					"valRespTime = function(pm) {",
+					"    pm.expect(pm.response.responseTime).to.be.less",
+					"}",
+					"",
+					"",
+					"valNotEmptyJson = function(Json) {",
+					"    pm.expect(Json.length).be.greaterThan(0);",
+					"    if (Json.length > 0) {",
+					"        return true;",
+					"    }",
+					"    return false;",
+					"}",
+					"",
+					"valAllBookFieldsJson = function(Json) {",
+					"    for (let i = 0; i < Json.length; i++) {",
+					"        pm.expect(Object.keys(Json[i])).be.eql([\"id\", \"name\", \"type\", \"available\"]);",
+					"    }",
+					"}",
+					"",
+					"valBookFields = function(Json) {",
+					"    pm.expect(Object.keys(Json)).to.be.eql([\"id\", \"name\", \"author\", \"isbn\", \"type\", \"price\", \"current-stock\", \"available\"]);",
+					"}",
+					"",
+					"valAllOrdersieldsJson = function(Json) {",
+					"    for (let i = 0; i < Json.length; i++) {",
+					"        pm.expect(Object.keys(Json[i])).be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);",
+					"    }",
+					"}",
+					"",
+					"valOrderFields = function(Json) {",
+					"    pm.expect(Object.keys(Json)).to.be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);",
+					"}",
+					"",
+					"/*",
+					"getOrdersJson = function(pm, callback) {",
+					"    pm.sendRequest(",
+					"        {",
+					"            method: 'GET',",
+					"            url: pm.environment.get('mainURL')+pm.environment.get('endPointOrders'),",
+					"            header: {'Authorization': 'Bearer '+pm.environment.get('token')}",
+					"        },",
+					"        function(err, response) {",
+					"            if (err) {",
+					"                console.error(err);",
+					"                callback(err, null);",
+					"            } else {",
+					"                const responseBody = response.json();",
+					"                callback(null, responseBody.body);",
+					"            }",
+					"        }",
+					"    );",
+					"}",
+					"*/",
+					"",
+					"getOrdersJson = function() {",
+					"    const axios = require('axios');",
+					"",
+					"    axios.get('https://simple-books-api.glitch.me/orders')",
+					"    .then(response => {",
+					"        console.log(response.data); // Aquí obtienes el JSON de la respuesta",
+					"    })",
+					"    .catch(error => {",
+					"        console.error(error);",
+					"    });",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code\", valResponseCode(pm));",
+					"pm.test(\"Status text\", valResponseText(pm));",
+					"pm.test(\"Authorized\", valHasAuthHeader(pm));",
+					"",
+					"if (valHasAuthHeader) {",
+					"    pm.test(\"Correct token assigned\", valAuthHeaderContent(pm));",
+					"}",
+					""
+				]
+			}
+		}
+	]
+}
