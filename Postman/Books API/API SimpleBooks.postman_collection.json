@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "489f99b6-afce-4cfc-a225-2110e9dddb32",
+		"name": "API SimpleBooks",
+		"description": "StartFragment\n\n[https://github.com/vdespa/introduction-to-postman-course/blob/main/simple-books-api.md](https://github.com/vdespa/introduction-to-postman-course/blob/main/simple-books-api.md)\n\nEndFragme",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27570576"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register New Client",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('clientName', newRndName());\r",
+									"pm.environment.set('clientEmail', newRndMail());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"if (pm.response.code === 201) {\r",
+									"    pm.environment.set('alreadyReg', true);\r",
+									"    pm.environment.set('token', mainJson.accessToken);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientName\": \"{{clientName}}\",\r\n    \"clientEmail\": \"{{clientEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mainURL}}{{endPointClients}}",
+							"host": [
+								"{{mainURL}}{{endPointClients}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"item": [
+				{
+					"name": "Get API Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointStatus}}",
+							"host": [
+								"{{mainURL}}{{endPointStatus}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get All Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Not an empty Json\", function() {pm.expect(mainJson.length).be.greaterThan(0);});\r",
+									"\r",
+									"if (valNotEmptyJson(mainJson)) {\r",
+									"    pm.environment.set('thereAreAvBooks', true);\r",
+									"    pm.environment.set('avRandomBook', _.random(1, mainJson.length));\r",
+									"    pm.test(\"All book fields are correct\", function() {\r",
+									"        for (let i = 0; i < mainJson.length; i++) {\r",
+									"            pm.expect(Object.keys(mainJson[i])).be.eql([\"id\", \"name\", \"type\", \"available\"]);\r",
+									"        }\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"thereAreAvBooks\", false);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointBooks}}",
+							"host": [
+								"{{mainURL}}{{endPointBooks}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let mainJson = JSON.parse(responseBody);\r",
+									"\r",
+									"if (pm.response.code === 200 && pm.environment.get('thereAreAvBooks')) {\r",
+									"    pm.test(\"Book fields are correct\", function() {pm.expect(Object.keys(mainJson)).to.be.eql([\"id\", \"name\", \"author\", \"type\", \"price\", \"current-stock\", \"available\"]);});\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainURL}}{{endPointBooks}}/:id",
+							"host": [
+								"{{mainURL}}{{endPointBooks}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{avRandomBook}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"item": [
+						{
+							"name": "Create Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.environment.set('lastOrderId', mainJson.orderId);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('rndCustomerName', newRndName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\": {{avRandomBook}},\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Orders",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"thereAreAvOrders\", false);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"ordersJson\", JSON.parse(responseBody));\r",
+											"\r",
+											"pm.test(\"Not an empty Json\", function() {pm.expect(mainJson.length).be.greaterThan(0);});\r",
+											"\r",
+											"if (valNotEmptyJson(mainJson)) {\r",
+											"    pm.test(\"All orders fields are correct\", function() {\r",
+											"        for (let i = 0; i < mainJson.length; i++) {\r",
+											"            pm.expect(Object.keys(mainJson[i])).be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);\r",
+											"        }\r",
+											"    });\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get New Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Verificar que se haya creado un nuevo pedido en la base de datos.\r",
+											"pm.test(\"Order succesfully created\", function() {pm.expect(pm.response.code).to.be.eql(200)});\r",
+											"\r",
+											"if (pm.response.code === 200) {\r",
+											"    let mainJson = JSON.parse(responseBody);\r",
+											"    // Verificar que los campos sean correctos\r",
+											"    pm.test(\"Order fields are correct\", function() {pm.expect(Object.keys(mainJson)).to.be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);});\r",
+											"    // Verificar que los detalles del pedido creado coincidan con los datos enviados.\r",
+											"    pm.test(\"Order book is eq as the requested\", function() {pm.expect(mainJson.bookId).to.be.eql(pm.environment.get('avRandomBook'));});\r",
+											"    pm.test(\"Order customerName is eq as the requested\", function() {pm.expect(mainJson.customerName).to.be.eql(pm.environment.get('rndCustomerName'));})\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}/:id",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									],
+									"path": [
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{lastOrderId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update Order",
+					"item": [
+						{
+							"name": "Update customer name on Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('rndCustomerName', newRndName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}/:id",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									],
+									"path": [
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{lastOrderId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Updated Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Order exists\r",
+											"pm.test(\"Order found\", function() {pm.expect(pm.response.code).to.be.eql(200)});\r",
+											"\r",
+											"if (pm.response.code === 200) {\r",
+											"    let mainJson = JSON.parse(responseBody);\r",
+											"    // Verificar que los detalles del pedido creado coincidan con los datos enviados.\r",
+											"    pm.test(\"Order customerName is eq as the updated\", function() {pm.expect(mainJson.customerName).to.be.eql(pm.environment.get('rndCustomerName'));})\r",
+											"    console.log(mainJson);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}/:id",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									],
+									"path": [
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{lastOrderId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete Order",
+					"item": [
+						{
+							"name": "Delete Single Order - Falta",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Order deleted\", function() {pm.expect(pm.response.code).to.be.eql(204)});\r",
+											"\r",
+											"//deleteAllOrders(pm);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}/:id",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									],
+									"path": [
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{lastOrderId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Single Order Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Verificar que el pedido ha sido eliminado\r",
+											"pm.test(\"The order has been deleted\", function() {pm.expect(pm.response.code).to.be.eql(404)});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}{{endPointOrders}}/:id",
+									"host": [
+										"{{mainURL}}{{endPointOrders}}"
+									],
+									"path": [
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{lastOrderId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"valAuthHeader = function(pm) {",
+					"    if (pm.request.headers.has('Authorization')) {",
+					"        return true;",
+					"    }",
+					"    return false;",
+					"}",
+					"",
+					"valNotEmptyJson = function(Json) {",
+					"    if (Json.length > 0) {",
+					"        return true;",
+					"    }",
+					"    return false;",
+					"}",
+					"",
+					"getOrdersJson = function(pm) {",
+					"    pm.sendRequest({",
+					"        url: pm.environment.get('mainURL')+pm.environment.get('endPointOrders'),",
+					"        method: 'GET',",
+					"        header: {",
+					"            'Content-Type': 'application/json',",
+					"            'Authorization': 'Bearer ' + pm.environment.get('token')",
+					"        }",
+					"    }, function (err, response) {",
+					"        if (err) {",
+					"            console.error(err);",
+					"        } else {",
+					"            pm.environment.set('jsonData', response.json());",
+					"        }",
+					"    })",
+					"}",
+					"",
+					"deleteAllOrders = function(pm) {",
+					"    getOrdersJson(pm);",
+					"    let json = pm.environment.get(\"jsonData\");",
+					"    for (let i = 0; i < json.length; i++) ",
+					"    {",
+					"        pm.sendRequest({",
+					"            url: pm.environment.get('mainURL')+pm.environment.get('endPointOrders')+\"/\"+json[i].id,",
+					"            method: 'DELETE',",
+					"            header: {",
+					"                'Content-Type': 'application/json',",
+					"                'Authorization': 'Bearer ' + pm.environment.get('token')",
+					"            }",
+					"        });   ",
+					"    }",
+					"}",
+					"",
+					"newRndName = function() {",
+					"    const firstNames = [\"John\", \"Emma\", \"Michael\", \"Olivia\", \"James\", \"Sophia\", \"David\", \"Isabella\", \"Daniel\", \"Mia\"];",
+					"    const lastNames = [\"Smith\", \"Johnson\", \"Williams\", \"Brown\", \"Jones\", \"Garcia\", \"Miller\", \"Davis\", \"Taylor\", \"Wilson\"];",
+					"",
+					"    const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+					"    const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+					"",
+					"    return randomFirstName + \" \" + randomLastName;",
+					"}",
+					"",
+					"newRndMail = function() {",
+					"    const domains = [\"gmail.com\", \"yahoo.com\", \"hotmail.com\", \"outlook.com\", \"example.com\"];",
+					"    const randomDomain = domains[Math.floor(Math.random() * domains.length)];",
+					"    const randomUsername = Math.random().toString(36).substring(7); // Generate a random string for the username",
+					"",
+					"    return randomUsername + \"@\" + randomDomain;",
+					"}",
+					"",
+					"pm.environment.set('alreadyReg', false);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code\", function () {pm.expect(pm.response.code).to.be.oneOf([200, 201, 204, 404, 409]);});",
+					"",
+					"pm.test(\"Status text\", function () {",
+					"        switch (pm.response.code) {",
+					"        // For GET",
+					"        case 200:",
+					"            pm.expect(pm.response.status).to.eql('OK');",
+					"            break;",
+					"        // For POST",
+					"        case 201:",
+					"            pm.expect(pm.response.status).to.eql('Created');",
+					"            break;",
+					"        // For DELETE and PATCH",
+					"        case 204:",
+					"            pm.expect(pm.response.status).to.eql('No Content');",
+					"            break;",
+					"        // Not found",
+					"        case 404:",
+					"            pm.expect(pm.response.status).to.eql('Not Found');",
+					"            break;",
+					"        // User Already Exists",
+					"        case 409:",
+					"            pm.expect(pm.response.status).to.eql('Conflict');",
+					"            break;",
+					"    }",
+					"});",
+					"",
+					"if (pm.environment.get('alreadyReg')) {",
+					"    pm.test(\"Authorized\", function () {pm.expect(pm.request.headers.has('Authorization')).to.be.true;});",
+					"",
+					"    if (valAuthHeader(pm)) {",
+					"        pm.test(\"Correct token assigned\", function() {pm.expect(pm.request.headers.get('Authorization').toString()).to.eql('Bearer '+pm.environment.get('token'));});",
+					"    }   ",
+					"}"
+				]
+			}
+		}
+	]
+}
