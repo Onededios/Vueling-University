@@ -8,517 +8,1836 @@
 	},
 	"item": [
 		{
-			"name": "Register",
+			"name": "Regression Test Cases",
 			"item": [
 				{
-					"name": "Register New Client",
+					"name": "WOT. Without Token",
+					"item": [
+						{
+							"name": "WOTPONC - POST New Client Without Token",
+							"item": [
+								{
+									"name": "WOTPONC.0 - Register New Client",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('clientName', newRndName());\r",
+													"pm.environment.set('clientEmail', newRndMail());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 201\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(201);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Created'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Created');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Received token is not null\", function() {\r",
+													"    pm.expect(mainJson.accessToken).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.environment.set('token', mainJson.accessToken);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"clientName\": \"{{clientName}}\",\r\n    \"clientEmail\": \"{{clientEmail}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointClients}}",
+											"host": [
+												"{{mainURL}}{{endPointClients}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGES - GET Status Without Token",
+							"item": [
+								{
+									"name": "WOTGES.0 - Get API Status",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Status OK received\", function() {\r",
+													"    pm.expect(mainJson.status).to.eql('OK');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointStatus}}",
+											"host": [
+												"{{mainURL}}{{endPointStatus}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGEAB - GET All Books Without Token",
+							"item": [
+								{
+									"name": "WOTGEAB.0 - Get All Books",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.environment.set('avRandomBook', _.random(1, mainJson.length));\r",
+													"\r",
+													"pm.test(\"All book fields are correct\", function() {\r",
+													"    for (let i = 0; i < mainJson.length; i++) {\r",
+													"        pm.expect(Object.keys(mainJson[i])).be.eql([\"id\", \"name\", \"type\", \"available\"]);\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointBooks}}",
+											"host": [
+												"{{mainURL}}{{endPointBooks}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGESBRI - GET Single Book Random ID Without Token",
+							"item": [
+								{
+									"name": "WOTGESBRI.0 - Get Single Book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 404\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Not Found'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'No book with id NaN' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('No book with id '+pm.environment.get('randomBookId'));\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointBooks}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointBooks}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomBookId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGESBHI - GET Single Book Hardcoded ID Without Token",
+							"item": [
+								{
+									"name": "WOTGESBHI.0 - Get Single Book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Book fields are correct\", function() {pm.expect(Object.keys(mainJson)).to.be.eql([\"id\", \"name\", \"author\", \"type\", \"price\", \"current-stock\", \"available\"]);});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointBooks}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointBooks}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{avRandomBook}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTPONO - POST New Order Without Token",
+							"item": [
+								{
+									"name": "WOTPONO.0 - Create Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('rndCustomerName', newRndName());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"bookId\": {{avRandomBook}},\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGEAO - GET All Orders Without Token",
+							"item": [
+								{
+									"name": "WOTGEAO.0 - Get All Orders",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGESORI - GET Single Order Random ID Without Token",
+							"item": [
+								{
+									"name": "WOTGESORI.0 - Get Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTGESOHI - GET Single Order Hardcoded ID Without Token",
+							"item": [
+								{
+									"name": "WOTGESOHI.0 - Get Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "cXP7vFS3wz1gZ5LhrKmJh"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTPAUORI - PATCH Update Order Random ID Without Token",
+							"item": [
+								{
+									"name": "WOTPAUORI.0 - Update customer name on Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('rndCustomerName', newRndName());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTPAUOHI - PATCH Update Order Hardcoded ID Without Token",
+							"item": [
+								{
+									"name": "WOTPAUOHI.0 - Update customer name on Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('rndCustomerName', newRndName());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "cXP7vFS3wz1gZ5LhrKmJh"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTDEDORI - DELETE Delete Order  Random ID Without Token",
+							"item": [
+								{
+									"name": "WOTDEDORI.0 - Delete Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WOTDEDOHI - DELETE Delete Order Hardcoded ID Without Token",
+							"item": [
+								{
+									"name": "WOTDEDOHI.0 - Delete Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 401\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Unauthorized'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'Missing Authorization header.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('Missing Authorization header.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "cXP7vFS3wz1gZ5LhrKmJh"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
-								"exec": [
-									"pm.environment.set('clientName', newRndName());\r",
-									"pm.environment.set('clientEmail', newRndMail());"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"let mainJson = JSON.parse(responseBody);\r",
-									"\r",
-									"if (pm.response.code === 201) {\r",
-									"    pm.environment.set('alreadyReg', true);\r",
-									"    pm.environment.set('token', mainJson.accessToken);\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"clientName\": \"{{clientName}}\",\r\n    \"clientEmail\": \"{{clientEmail}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{mainURL}}{{endPointClients}}",
-							"host": [
-								"{{mainURL}}{{endPointClients}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Status",
-			"item": [
-				{
-					"name": "Get API Status",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
+								"type": "text/javascript",
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{mainURL}}{{endPointStatus}}",
-							"host": [
-								"{{mainURL}}{{endPointStatus}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Books",
-			"item": [
-				{
-					"name": "Get All Books",
-					"event": [
+						},
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
-									"let mainJson = JSON.parse(responseBody);\r",
-									"\r",
-									"pm.test(\"Not an empty Json\", function() {pm.expect(mainJson.length).be.greaterThan(0);});\r",
-									"\r",
-									"if (valNotEmptyJson(mainJson)) {\r",
-									"    pm.environment.set('thereAreAvBooks', true);\r",
-									"    pm.environment.set('avRandomBook', _.random(1, mainJson.length));\r",
-									"    pm.test(\"All book fields are correct\", function() {\r",
-									"        for (let i = 0; i < mainJson.length; i++) {\r",
-									"            pm.expect(Object.keys(mainJson[i])).be.eql([\"id\", \"name\", \"type\", \"available\"]);\r",
-									"        }\r",
-									"    });\r",
-									"}"
-								],
-								"type": "text/javascript"
+									"pm.test(\"The req has the header authorization\", function() {",
+									"    pm.expect(pm.request.headers.has('Authorization')).to.not.be.true;",
+									"});"
+								]
 							}
+						}
+					]
+				},
+				{
+					"name": "WT. With Token",
+					"item": [
+						{
+							"name": "WTPONC - POST New Client With Token",
+							"item": [
+								{
+									"name": "WOTPONC.0 - Register New Client",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('clientName', newRndName());\r",
+													"pm.environment.set('clientEmail', newRndMail());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 201\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(201);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Created'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Created');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Received token is not null\", function() {\r",
+													"    pm.expect(mainJson.accessToken).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.environment.set('token', mainJson.accessToken);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"clientName\": \"{{clientName}}\",\r\n    \"clientEmail\": \"{{clientEmail}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointClients}}",
+											"host": [
+												"{{mainURL}}{{endPointClients}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						},
+						{
+							"name": "WTGES - GET Status With Token",
+							"item": [
+								{
+									"name": "WTGES.0 - Get API Status",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Status OK received\", function() {\r",
+													"    pm.expect(mainJson.status).to.eql('OK');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointStatus}}",
+											"host": [
+												"{{mainURL}}{{endPointStatus}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTGEAB - GET All Books With Token",
+							"item": [
+								{
+									"name": "WTGEAB.0 - Get All Books",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.environment.set('avRandomBook', _.random(3, mainJson.length));\r",
+													"\r",
+													"pm.test(\"All book fields are correct\", function() {\r",
+													"    for (let i = 0; i < mainJson.length; i++) {\r",
+													"        pm.expect(Object.keys(mainJson[i])).be.eql([\"id\", \"name\", \"type\", \"available\"]);\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointBooks}}",
+											"host": [
+												"{{mainURL}}{{endPointBooks}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTGESBRI - GET Single Book Random ID With Token",
+							"item": [
+								{
+									"name": "WTGESBRI.0 - Get Single Book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 404\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Not Found'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'No book with id NaN' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('No book with id NaN');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointBooks}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointBooks}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "awdawdawdaw"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTGESBHI - GET Single Book Hardcoded ID With Token",
+							"item": [
+								{
+									"name": "WTGESBHI.0 - Get Single Book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Book fields are correct\", function() {pm.expect(Object.keys(mainJson)).to.be.eql([\"id\", \"name\", \"author\", \"type\", \"price\", \"current-stock\", \"available\"]);});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointBooks}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointBooks}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{avRandomBook}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTPONO - POST New Order With Token",
+							"item": [
+								{
+									"name": "WTPONO.0 - Create Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 201\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(201);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Created'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Created');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Json created true\", function() {\r",
+													"    pm.expect(mainJson.created).to.eql(true);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Json has orderID\", function() {\r",
+													"    pm.expect(mainJson.orderId).not.to.be.null;\r",
+													"    pm.environment.set('lastOrderId',mainJson.orderId);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('rndCustomerName', newRndName());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"bookId\": {{avRandomBook}},\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WTPONO.1 - Get All Orders",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"The last created order is added to Orders\", function() {\r",
+													"    let lastInIndex = mainJson.length-1;\r",
+													"    pm.expect(mainJson[lastInIndex].id).to.eql(pm.environment.get('lastOrderId'));\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Order fields are correct\", function() {\r",
+													"    let lastInIndex = mainJson.length-1;\r",
+													"    pm.expect(Object.keys(mainJson[lastInIndex])).be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WTPONO.2 - Get Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Saved id is the same as the created\", function() {\r",
+													"    pm.expect(mainJson.id).to.eql(pm.environment.get('lastOrderId'));\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Saved book is the same as requested\", function() {\r",
+													"    pm.expect(mainJson.bookId).to.eql(pm.environment.get('avRandomBook'));\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Order fields are correct\", function() {\r",
+													"    pm.expect(Object.keys(mainJson)).be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{lastOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTGESORI - GET Single Order Random ID With Token",
+							"item": [
+								{
+									"name": "WTGESORI.0 - Get Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 404\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Not Found'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'No order with id 'id'.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('No order with id '+pm.environment.get('randomOrderId')+'.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTPAUOF - PATCH Update Order Field With Token",
+							"item": [
+								{
+									"name": "WTPAUOF.0 - Update customer name on Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 204\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'No Content'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('No Content');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('lastCustomerName', pm.environment.get('rndCustomerName'));\r",
+													"pm.environment.set('rndCustomerName', newRndName());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{lastOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WTPAUOF.1 - Get All Orders",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"customerName field has different value\", function() {\r",
+													"    let lastInIndex = mainJson.length-1;\r",
+													"    pm.expect(mainJson[lastInIndex].customerName).not.to.eql(pm.environment.get('lastCustomerName'));\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WTPAUOF.2 - Get Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Order fields are correct\", function() {\r",
+													"    pm.expect(Object.keys(mainJson)).be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"customerName field has different value\", function() {\r",
+													"    pm.expect(mainJson.customerName).not.to.eql(pm.environment.get('lastCustomerName'));\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{lastOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTPAUORI - PATCH Update Order Random ID With Token",
+							"item": [
+								{
+									"name": "WTPAUORI.0 - Update customer name on Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 404\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Not Found'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'No order with id 'id'.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('No order with id '+pm.environment.get('randomOrderId')+'.');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set('rndCustomerName', newRndName());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTDEDO - DELETE Delete Order With Token",
+							"item": [
+								{
+									"name": "WTDEDO.0 - Delete Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Response code 204\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'No Content'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('No Content');\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{lastOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WTDEDO.1 - Get All Orders",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 200\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'OK'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('OK');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Order has been deleted from the Json\", function() {\r",
+													"    pm.expect(mainJson.length).to.eql(0);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "WTDEDO.2 - Get Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 404\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Not Found'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'No order with id 'id'.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('No order with id '+pm.environment.get('lastOrderId')+'.');\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{lastOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WTDEDORI - DELETE Delete Order  Random ID With Token",
+							"item": [
+								{
+									"name": "WTDEDORI.0 - Delete Single Order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let mainJson = JSON.parse(responseBody);\r",
+													"\r",
+													"pm.test(\"Response code 404\", function() {\r",
+													"    pm.expect(pm.response.code).to.eql(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response text 'Not Found'\", function() {\r",
+													"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive not null JSON\", function() {\r",
+													"    pm.expect(mainJson).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Receive 'No order with id 'id'.' in the Json\", function() {\r",
+													"    pm.expect(mainJson.error).to.eql('No order with id '+pm.environment.get('randomOrderId')+'.');\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{mainURL}}{{endPointOrders}}/:id",
+											"host": [
+												"{{mainURL}}{{endPointOrders}}"
+											],
+											"path": [
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{randomOrderId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
-									"pm.environment.set(\"thereAreAvBooks\", false);"
-								],
-								"type": "text/javascript"
+									""
+								]
 							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{mainURL}}{{endPointBooks}}",
-							"host": [
-								"{{mainURL}}{{endPointBooks}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single Book",
-					"event": [
+						},
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
-									"let mainJson = JSON.parse(responseBody);\r",
-									"\r",
-									"if (pm.response.code === 200 && pm.environment.get('thereAreAvBooks')) {\r",
-									"    pm.test(\"Book fields are correct\", function() {pm.expect(Object.keys(mainJson)).to.be.eql([\"id\", \"name\", \"author\", \"type\", \"price\", \"current-stock\", \"available\"]);});\r",
-									"}"
-								],
-								"type": "text/javascript"
+									"pm.test(\"The req has the header authorization\", function() {",
+									"    pm.expect(pm.request.headers.has('Authorization')).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"The auth header has a token assigned\", function() {",
+									"    pm.expect(pm.request.headers.has('Authorization')).not.to.be.null;",
+									"});"
+								]
 							}
 						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{mainURL}}{{endPointBooks}}/:id",
-							"host": [
-								"{{mainURL}}{{endPointBooks}}"
-							],
-							"path": [
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{avRandomBook}}"
-								}
-							]
-						}
-					},
-					"response": []
+					]
 				}
-			]
-		},
-		{
-			"name": "Orders",
-			"item": [
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
 				{
-					"name": "Create Order",
-					"item": [
-						{
-							"name": "Create Order",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"let mainJson = JSON.parse(responseBody);\r",
-											"\r",
-											"pm.environment.set('lastOrderId', mainJson.orderId);"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"pm.environment.set('rndCustomerName', newRndName());"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"bookId\": {{avRandomBook}},\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Orders",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"pm.environment.set(\"thereAreAvOrders\", false);"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"let mainJson = JSON.parse(responseBody);\r",
-											"pm.environment.set(\"ordersJson\", JSON.parse(responseBody));\r",
-											"\r",
-											"pm.test(\"Not an empty Json\", function() {pm.expect(mainJson.length).be.greaterThan(0);});\r",
-											"\r",
-											"if (valNotEmptyJson(mainJson)) {\r",
-											"    pm.test(\"All orders fields are correct\", function() {\r",
-											"        for (let i = 0; i < mainJson.length; i++) {\r",
-											"            pm.expect(Object.keys(mainJson[i])).be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);\r",
-											"        }\r",
-											"    });\r",
-											"}"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get New Order",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"// Verificar que se haya creado un nuevo pedido en la base de datos.\r",
-											"pm.test(\"Order succesfully created\", function() {pm.expect(pm.response.code).to.be.eql(200)});\r",
-											"\r",
-											"if (pm.response.code === 200) {\r",
-											"    let mainJson = JSON.parse(responseBody);\r",
-											"    // Verificar que los campos sean correctos\r",
-											"    pm.test(\"Order fields are correct\", function() {pm.expect(Object.keys(mainJson)).to.be.eql([\"id\", \"bookId\", \"customerName\", \"createdBy\", \"quantity\", \"timestamp\"]);});\r",
-											"    // Verificar que los detalles del pedido creado coincidan con los datos enviados.\r",
-											"    pm.test(\"Order book is eq as the requested\", function() {pm.expect(mainJson.bookId).to.be.eql(pm.environment.get('avRandomBook'));});\r",
-											"    pm.test(\"Order customerName is eq as the requested\", function() {pm.expect(mainJson.customerName).to.be.eql(pm.environment.get('rndCustomerName'));})\r",
-											"}"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}/:id",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									],
-									"path": [
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "{{lastOrderId}}"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set('randomOrderId', 'aidkjwiodjawdpooajdw142142podka');",
+							"pm.environment.set('randomBookId', '1241424121414');"
+						]
+					}
 				},
 				{
-					"name": "Update Order",
-					"item": [
-						{
-							"name": "Update customer name on Order",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"pm.environment.set('rndCustomerName', newRndName());"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"customerName\": \"{{rndCustomerName}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}/:id",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									],
-									"path": [
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "{{lastOrderId}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Updated Order",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"// Order exists\r",
-											"pm.test(\"Order found\", function() {pm.expect(pm.response.code).to.be.eql(200)});\r",
-											"\r",
-											"if (pm.response.code === 200) {\r",
-											"    let mainJson = JSON.parse(responseBody);\r",
-											"    // Verificar que los detalles del pedido creado coincidan con los datos enviados.\r",
-											"    pm.test(\"Order customerName is eq as the updated\", function() {pm.expect(mainJson.customerName).to.be.eql(pm.environment.get('rndCustomerName'));})\r",
-											"    console.log(mainJson);\r",
-											"}"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}/:id",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									],
-									"path": [
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "{{lastOrderId}}"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Delete Order",
-					"item": [
-						{
-							"name": "Delete Single Order - Falta",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Order deleted\", function() {pm.expect(pm.response.code).to.be.eql(204)});\r",
-											"\r",
-											"//deleteAllOrders(pm);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}/:id",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									],
-									"path": [
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "{{lastOrderId}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Single Order Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"// Verificar que el pedido ha sido eliminado\r",
-											"pm.test(\"The order has been deleted\", function() {pm.expect(pm.response.code).to.be.eql(404)});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{mainURL}}{{endPointOrders}}/:id",
-									"host": [
-										"{{mainURL}}{{endPointOrders}}"
-									],
-									"path": [
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "{{lastOrderId}}"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
 	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "{{token}}",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -537,23 +1856,6 @@
 					"        return true;",
 					"    }",
 					"    return false;",
-					"}",
-					"",
-					"getOrdersJson = function(pm) {",
-					"    pm.sendRequest({",
-					"        url: pm.environment.get('mainURL')+pm.environment.get('endPointOrders'),",
-					"        method: 'GET',",
-					"        header: {",
-					"            'Content-Type': 'application/json',",
-					"            'Authorization': 'Bearer ' + pm.environment.get('token')",
-					"        }",
-					"    }, function (err, response) {",
-					"        if (err) {",
-					"            console.error(err);",
-					"        } else {",
-					"            pm.environment.set('jsonData', response.json());",
-					"        }",
-					"    })",
 					"}",
 					"",
 					"deleteAllOrders = function(pm) {",
@@ -599,40 +1901,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"pm.test(\"Status code\", function () {pm.expect(pm.response.code).to.be.oneOf([200, 201, 204, 404, 409]);});",
-					"",
-					"pm.test(\"Status text\", function () {",
-					"        switch (pm.response.code) {",
-					"        // For GET",
-					"        case 200:",
-					"            pm.expect(pm.response.status).to.eql('OK');",
-					"            break;",
-					"        // For POST",
-					"        case 201:",
-					"            pm.expect(pm.response.status).to.eql('Created');",
-					"            break;",
-					"        // For DELETE and PATCH",
-					"        case 204:",
-					"            pm.expect(pm.response.status).to.eql('No Content');",
-					"            break;",
-					"        // Not found",
-					"        case 404:",
-					"            pm.expect(pm.response.status).to.eql('Not Found');",
-					"            break;",
-					"        // User Already Exists",
-					"        case 409:",
-					"            pm.expect(pm.response.status).to.eql('Conflict');",
-					"            break;",
-					"    }",
-					"});",
-					"",
-					"if (pm.environment.get('alreadyReg')) {",
-					"    pm.test(\"Authorized\", function () {pm.expect(pm.request.headers.has('Authorization')).to.be.true;});",
-					"",
-					"    if (valAuthHeader(pm)) {",
-					"        pm.test(\"Correct token assigned\", function() {pm.expect(pm.request.headers.get('Authorization').toString()).to.eql('Bearer '+pm.environment.get('token'));});",
-					"    }   ",
-					"}"
+					""
 				]
 			}
 		}
