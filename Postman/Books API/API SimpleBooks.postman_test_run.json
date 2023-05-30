@@ -1,89 +1,33 @@
 {
-	"id": "bfd35c52-cbda-44c5-bcde-c8d4b84276b9",
+	"id": "4af57f04-2e09-4d06-a689-62f44cc5a946",
 	"name": "API SimpleBooks",
-	"timestamp": "2023-05-29T21:49:15.967Z",
+	"timestamp": "2023-05-30T22:12:00.777Z",
 	"collection_id": "27570576-489f99b6-afce-4cfc-a225-2110e9dddb32",
-	"folder_id": 0,
-	"environment_id": "27570576-e1dc0b14-5220-4ec8-952a-81d1caaeda45",
-	"totalPass": 166,
+	"folder_id": "27570576-7648acd9-69c1-41eb-839a-501c21490f18",
+	"environment_id": "27570576-3156288f-f6fd-40d7-b50a-4699aeca2c5b",
+	"totalPass": 94,
 	"delay": 0,
 	"persist": true,
 	"status": "finished",
-	"startedAt": "2023-05-29T21:49:07.636Z",
+	"startedAt": "2023-05-30T22:11:54.207Z",
 	"totalFail": 0,
 	"results": [
 		{
-			"id": "2dc6a93b-7532-459f-adb7-d367932e6cc3",
-			"name": "WOTPONC.0 - Register New Client",
-			"url": "https://simple-books-api.glitch.me/api-clients",
-			"time": 318,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"Response code 201": true,
-				"Response text 'Created'": true,
-				"Receive not null JSON": true,
-				"Received token is not null": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 201": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Created'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Received token is not null": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				318
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"Response code 201": true,
-					"Response text 'Created'": true,
-					"Receive not null JSON": true,
-					"Received token is not null": true
-				}
-			]
-		},
-		{
-			"id": "9a1e54e8-4aaf-45b9-97a4-a3fb1575a943",
-			"name": "WOTGES.0 - Get API Status",
+			"id": "44219116-c0d4-477c-aa02-e71323a2e8f6",
+			"name": "TC01.0 - Get API Status",
 			"url": "https://simple-books-api.glitch.me/status",
-			"time": 271,
+			"time": 187,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 200": true,
 				"Response text 'OK'": true,
-				"Receive not null JSON": true,
+				"Receive not empty JSON": true,
 				"Status OK received": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 200": {
 					"pass": 1,
 					"fail": 0
@@ -92,7 +36,7 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
 					"pass": 1,
 					"fail": 0
 				},
@@ -102,39 +46,33 @@
 				}
 			},
 			"times": [
-				271
+				187
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
 					"Response code 200": true,
 					"Response text 'OK'": true,
-					"Receive not null JSON": true,
+					"Receive not empty JSON": true,
 					"Status OK received": true
 				}
 			]
 		},
 		{
-			"id": "198e0b33-88af-4fad-bd84-8569e628d629",
-			"name": "WOTGEAB.0 - Get All Books",
+			"id": "94e389da-f31f-4786-a9fd-74a6e2cc74e9",
+			"name": "TC02.0 - Get All Books",
 			"url": "https://simple-books-api.glitch.me/books",
-			"time": 142,
+			"time": 501,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 200": true,
 				"Response text 'OK'": true,
-				"Receive not null JSON": true,
+				"Receive not empty JSON": true,
 				"All book fields are correct": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 200": {
 					"pass": 1,
 					"fail": 0
@@ -143,7 +81,7 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
 					"pass": 1,
 					"fail": 0
 				},
@@ -153,39 +91,34 @@
 				}
 			},
 			"times": [
-				142
+				501
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
 					"Response code 200": true,
 					"Response text 'OK'": true,
-					"Receive not null JSON": true,
+					"Receive not empty JSON": true,
 					"All book fields are correct": true
 				}
 			]
 		},
 		{
-			"id": "4871ed99-c741-4d96-b49e-44823daf2208",
-			"name": "WOTGESBRI.0 - Get Single Book",
-			"url": "https://simple-books-api.glitch.me/books/1241424121414",
-			"time": 135,
+			"id": "4c26710b-8fc4-466b-ad7b-710abab6c660",
+			"name": "TC02.1 - Get Single Book With No Correct Id",
+			"url": "https://simple-books-api.glitch.me/books/12131231",
+			"time": 121,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 404": true,
 				"Response text 'Not Found'": true,
-				"Receive not null JSON": true,
-				"Receive 'No book with id NaN' in the Json": true
+				"Receive not empty JSON": true,
+				"Received 'error' field in the Json": true,
+				"Received error value": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 404": {
 					"pass": 1,
 					"fail": 0
@@ -194,113 +127,15 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive 'No book with id NaN' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				135
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"Response code 404": true,
-					"Response text 'Not Found'": true,
-					"Receive not null JSON": true,
-					"Receive 'No book with id NaN' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "f50a8f50-a2dd-43b1-9d87-fe75ff6de540",
-			"name": "WOTGESBHI.0 - Get Single Book",
-			"url": "https://simple-books-api.glitch.me/books/6",
-			"time": 136,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"Book fields are correct": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
+				"Received 'error' field in the Json": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Book fields are correct": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				136
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"Book fields are correct": true
-				}
-			]
-		},
-		{
-			"id": "347a8710-5182-4836-8538-3aa1c114ecee",
-			"name": "WOTPONO.0 - Create Order",
-			"url": "https://simple-books-api.glitch.me/orders",
-			"time": 121,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"Response code 401": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"Receive 'Missing Authorization header.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'Missing Authorization header.' in the Json": {
+				"Received error value": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -310,35 +145,253 @@
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
-					"Response code 401": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"Receive 'Missing Authorization header.' in the Json": true
+					"Response code 404": true,
+					"Response text 'Not Found'": true,
+					"Receive not empty JSON": true,
+					"Received 'error' field in the Json": true,
+					"Received error value": true
 				}
 			]
 		},
 		{
-			"id": "462bbeb3-e88e-45df-879d-58087c08ff7b",
-			"name": "WOTGEAO.0 - Get All Orders",
+			"id": "468bb8c2-f4a1-4052-85fb-56fe795df299",
+			"name": "TC02.2 - Get Single Book With Correct Id And Available",
+			"url": "https://simple-books-api.glitch.me/books/3",
+			"time": 155,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"Book fields are correct": true,
+				"Book is available": true,
+				"Book has name": true,
+				"Book has price": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book fields are correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book is available": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book has name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book has price": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				155
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"Book fields are correct": true,
+					"Book is available": true,
+					"Book has name": true,
+					"Book has price": true
+				}
+			]
+		},
+		{
+			"id": "ad3505a4-f6bf-4e17-bfc0-9cd574faa958",
+			"name": "TC02.3 - Get Single Book With Correct Id And Not Available",
+			"url": "https://simple-books-api.glitch.me/books/2",
+			"time": 130,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"Book fields are correct": true,
+				"Book is not available": true,
+				"Book has name": true,
+				"Book has price": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book fields are correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book is not available": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book has name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book has price": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				130
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"Book fields are correct": true,
+					"Book is not available": true,
+					"Book has name": true,
+					"Book has price": true
+				}
+			]
+		},
+		{
+			"id": "963d6784-2cc8-4ef3-89a7-55e8d6ba0ae8",
+			"name": "TC03.0 - Register New User",
+			"url": "https://simple-books-api.glitch.me/api-clients",
+			"time": 636,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Response code 201": true,
+				"Response text 'Created'": true,
+				"Receive not empty JSON": true,
+				"Received token is not empty": true
+			},
+			"testPassFailCounts": {
+				"Response code 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Created'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received token is not empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				636
+			],
+			"allTests": [
+				{
+					"Response code 201": true,
+					"Response text 'Created'": true,
+					"Receive not empty JSON": true,
+					"Received token is not empty": true
+				}
+			]
+		},
+		{
+			"id": "94a1cf7e-bacd-4b5c-b0d0-c41a36cfa788",
+			"name": "TC03.1 - Register New User With The Same Credentials",
+			"url": "https://simple-books-api.glitch.me/api-clients",
+			"time": 232,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Response code 409": true,
+				"Response text 'Conflict'": true,
+				"Receive not empty JSON": true,
+				"Book fields are correct": true,
+				"Received error value": true
+			},
+			"testPassFailCounts": {
+				"Response code 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Conflict'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Book fields are correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received error value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				232
+			],
+			"allTests": [
+				{
+					"Response code 409": true,
+					"Response text 'Conflict'": true,
+					"Receive not empty JSON": true,
+					"Book fields are correct": true,
+					"Received error value": true
+				}
+			]
+		},
+		{
+			"id": "b768cf5a-202e-4c24-b16b-fa995d09cc89",
+			"name": "TC04.0 - Create Order With No Token",
 			"url": "https://simple-books-api.glitch.me/orders",
-			"time": 118,
+			"time": 123,
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 401": true,
 				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
+				"Receive not empty JSON": true,
+				"Received 'error' field in the Json": true,
 				"Receive 'Missing Authorization header.' in the Json": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 401": {
 					"pass": 1,
 					"fail": 0
@@ -347,7 +400,11 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received 'error' field in the Json": {
 					"pass": 1,
 					"fail": 0
 				},
@@ -357,39 +414,85 @@
 				}
 			},
 			"times": [
-				118
+				123
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
 					"Response code 401": true,
 					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
+					"Receive not empty JSON": true,
+					"Received 'error' field in the Json": true,
 					"Receive 'Missing Authorization header.' in the Json": true
 				}
 			]
 		},
 		{
-			"id": "6f76112d-ef94-4fa8-9041-df4bc78ade92",
-			"name": "WOTGESORI.0 - Get Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
-			"time": 149,
+			"id": "d327a294-60a1-49cb-88bc-a18a337ffc3b",
+			"name": "TC04.1 - Create Order With Token",
+			"url": "https://simple-books-api.glitch.me/orders",
+			"time": 203,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Response code 201": true,
+				"Response text 'Created'": true,
+				"Receive not empty JSON": true,
+				"The Json has been created": true,
+				"The Json has orderID": true
+			},
+			"testPassFailCounts": {
+				"Response code 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Created'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The Json has been created": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The Json has orderID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				203
+			],
+			"allTests": [
+				{
+					"Response code 201": true,
+					"Response text 'Created'": true,
+					"Receive not empty JSON": true,
+					"The Json has been created": true,
+					"The Json has orderID": true
+				}
+			]
+		},
+		{
+			"id": "c8dcfddf-1ac8-4351-822f-d6f370f939ac",
+			"name": "TC04.2 - Get All Orders With No Token",
+			"url": "https://simple-books-api.glitch.me/orders",
+			"time": 127,
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 401": true,
 				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
+				"Receive not empty JSON": true,
 				"Receive 'Missing Authorization header.' in the Json": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 401": {
 					"pass": 1,
 					"fail": 0
@@ -398,11 +501,175 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
 					"pass": 1,
 					"fail": 0
 				},
 				"Receive 'Missing Authorization header.' in the Json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				127
+			],
+			"allTests": [
+				{
+					"Response code 401": true,
+					"Response text 'Unauthorized'": true,
+					"Receive not empty JSON": true,
+					"Receive 'Missing Authorization header.' in the Json": true
+				}
+			]
+		},
+		{
+			"id": "4002283e-7667-4291-b8de-d6f8e1c0bfce",
+			"name": "TC04.3 - Get All Orders With Token",
+			"url": "https://simple-books-api.glitch.me/orders",
+			"time": 125,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"Order fields are correct": true,
+				"The last created order is added to Orders": true,
+				"Has the correct ordered book": true,
+				"Has the correct customerName assigned": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Order fields are correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The last created order is added to Orders": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Has the correct ordered book": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Has the correct customerName assigned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				125
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"Order fields are correct": true,
+					"The last created order is added to Orders": true,
+					"Has the correct ordered book": true,
+					"Has the correct customerName assigned": true
+				}
+			]
+		},
+		{
+			"id": "9e7aeb96-9aaf-40e8-9e18-9d8a054da4ab",
+			"name": "TC05.0 - Get Single Order With No Correct Id & No Token",
+			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
+			"time": 126,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response code 401": true,
+				"Response text 'Unauthorized'": true,
+				"Receive not empty JSON": true,
+				"Received 'error' field in the Json": true,
+				"Received error value": true
+			},
+			"testPassFailCounts": {
+				"Response code 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Unauthorized'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received 'error' field in the Json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received error value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				126
+			],
+			"allTests": [
+				{
+					"Response code 401": true,
+					"Response text 'Unauthorized'": true,
+					"Receive not empty JSON": true,
+					"Received 'error' field in the Json": true,
+					"Received error value": true
+				}
+			]
+		},
+		{
+			"id": "d56e97a8-37f5-4b44-b56a-a0d100467b24",
+			"name": "TC05.1 - Get Single Order With No Correct Id & Token",
+			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
+			"time": 149,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Response code 404": true,
+				"Response text 'Not Found'": true,
+				"Receive not empty JSON": true,
+				"Received 'error' field in the Json": true,
+				"Received error value": true
+			},
+			"testPassFailCounts": {
+				"Response code 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Not Found'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received 'error' field in the Json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received error value": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -412,35 +679,31 @@
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
-					"Response code 401": true,
-					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
-					"Receive 'Missing Authorization header.' in the Json": true
+					"Response code 404": true,
+					"Response text 'Not Found'": true,
+					"Receive not empty JSON": true,
+					"Received 'error' field in the Json": true,
+					"Received error value": true
 				}
 			]
 		},
 		{
-			"id": "f2c2bba4-e998-412b-9b3d-47dd03cb89e3",
-			"name": "WOTGESOHI.0 - Get Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/cXP7vFS3wz1gZ5LhrKmJh",
-			"time": 142,
+			"id": "c96062f5-046c-407a-a85e-3dea3118e9cd",
+			"name": "TC06.0 - Update Value On Order With No Token",
+			"url": "https://simple-books-api.glitch.me/orders/hW_FRt1hZTDzYCBf948Ar",
+			"time": 216,
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 401": true,
 				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
+				"Receive not empty JSON": true,
+				"Received 'error' field in the Json": true,
 				"Receive 'Missing Authorization header.' in the Json": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 401": {
 					"pass": 1,
 					"fail": 0
@@ -449,7 +712,11 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received 'error' field in the Json": {
 					"pass": 1,
 					"fail": 0
 				},
@@ -459,39 +726,67 @@
 				}
 			},
 			"times": [
-				142
+				216
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
 					"Response code 401": true,
 					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
+					"Receive not empty JSON": true,
+					"Received 'error' field in the Json": true,
 					"Receive 'Missing Authorization header.' in the Json": true
 				}
 			]
 		},
 		{
-			"id": "121df9ed-b42e-4cf4-b908-3ec53a49ccf3",
-			"name": "WOTPAUORI.0 - Update customer name on Order",
+			"id": "a5a803a2-146a-4f52-bef5-2618e707abbd",
+			"name": "TC06.1 - Update Value On Order With Token",
+			"url": "https://simple-books-api.glitch.me/orders/hW_FRt1hZTDzYCBf948Ar",
+			"time": 323,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Response code 204": true,
+				"Response text 'No Content'": true
+			},
+			"testPassFailCounts": {
+				"Response code 204": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'No Content'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				323
+			],
+			"allTests": [
+				{
+					"Response code 204": true,
+					"Response text 'No Content'": true
+				}
+			]
+		},
+		{
+			"id": "d22a0c7d-54c7-4fe2-a5f7-530ddfb9fa37",
+			"name": "TC06.2 - Get Single Order With Correct Id & No Token",
 			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
-			"time": 125,
+			"time": 229,
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized"
 			},
 			"tests": {
-				"The req has the header authorization": true,
 				"Response code 401": true,
 				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
+				"Receive not empty JSON": true,
 				"Receive 'Missing Authorization header.' in the Json": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 401": {
 					"pass": 1,
 					"fail": 0
@@ -500,7 +795,108 @@
 					"pass": 1,
 					"fail": 0
 				},
-				"Receive not null JSON": {
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive 'Missing Authorization header.' in the Json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				229
+			],
+			"allTests": [
+				{
+					"Response code 401": true,
+					"Response text 'Unauthorized'": true,
+					"Receive not empty JSON": true,
+					"Receive 'Missing Authorization header.' in the Json": true
+				}
+			]
+		},
+		{
+			"id": "b075007d-ac75-47fb-91c1-0f00f750f4d5",
+			"name": "TC06.3 - Get Single Order With Correct Id & Token",
+			"url": "https://simple-books-api.glitch.me/orders/hW_FRt1hZTDzYCBf948Ar",
+			"time": 144,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"Order fields are correct": true,
+				"customerName field has different value": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Order fields are correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"customerName field has different value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				144
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"Order fields are correct": true,
+					"customerName field has different value": true
+				}
+			]
+		},
+		{
+			"id": "ddf8012b-1e13-4fb8-adcb-398418c06db4",
+			"name": "TC07.0 - Delete Single Order With No Token",
+			"url": "https://simple-books-api.glitch.me/orders/hW_FRt1hZTDzYCBf948Ar",
+			"time": 125,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response code 401": true,
+				"Response text 'Unauthorized'": true,
+				"Receive not empty JSON": true,
+				"Received 'error' field in the Json": true,
+				"Receive 'Missing Authorization header.' in the Json": true
+			},
+			"testPassFailCounts": {
+				"Response code 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Unauthorized'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Received 'error' field in the Json": {
 					"pass": 1,
 					"fail": 0
 				},
@@ -514,722 +910,28 @@
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
 					"Response code 401": true,
 					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
+					"Receive not empty JSON": true,
+					"Received 'error' field in the Json": true,
 					"Receive 'Missing Authorization header.' in the Json": true
 				}
 			]
 		},
 		{
-			"id": "5f073289-885d-472f-bb55-c0cdff4cb77d",
-			"name": "WOTPAUOHI.0 - Update customer name on Order",
-			"url": "https://simple-books-api.glitch.me/orders/cXP7vFS3wz1gZ5LhrKmJh",
-			"time": 217,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"Response code 401": true,
-				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
-				"Receive 'Missing Authorization header.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Unauthorized'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'Missing Authorization header.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				217
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"Response code 401": true,
-					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
-					"Receive 'Missing Authorization header.' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "0965f804-50fc-450a-897c-3a047abd4e92",
-			"name": "WOTDEDORI.0 - Delete Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
-			"time": 522,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"Response code 401": true,
-				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
-				"Receive 'Missing Authorization header.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Unauthorized'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'Missing Authorization header.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				522
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"Response code 401": true,
-					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
-					"Receive 'Missing Authorization header.' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "1e4b21bb-3cf7-4fdc-8710-a814f65a1441",
-			"name": "WOTDEDOHI.0 - Delete Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/5igpt0EdmhLc9XzVjWn9-",
-			"time": 120,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"Response code 401": true,
-				"Response text 'Unauthorized'": true,
-				"Receive not null JSON": true,
-				"Receive 'Missing Authorization header.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Unauthorized'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'Missing Authorization header.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				120
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"Response code 401": true,
-					"Response text 'Unauthorized'": true,
-					"Receive not null JSON": true,
-					"Receive 'Missing Authorization header.' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "73f5bf40-7978-41ab-b5b3-81d3ef226940",
-			"name": "WOTPONC.0 - Register New Client",
-			"url": "https://simple-books-api.glitch.me/api-clients",
-			"time": 373,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 201": true,
-				"Response text 'Created'": true,
-				"Receive not null JSON": true,
-				"Received token is not null": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 201": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Created'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Received token is not null": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				373
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 201": true,
-					"Response text 'Created'": true,
-					"Receive not null JSON": true,
-					"Received token is not null": true
-				}
-			]
-		},
-		{
-			"id": "384e08b9-575a-4781-9229-f547f075834e",
-			"name": "WTGES.0 - Get API Status",
-			"url": "https://simple-books-api.glitch.me/status",
-			"time": 282,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"Status OK received": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status OK received": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				282
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"Status OK received": true
-				}
-			]
-		},
-		{
-			"id": "65279247-9491-43d0-93b6-d5542d542f04",
-			"name": "WTGEAB.0 - Get All Books",
-			"url": "https://simple-books-api.glitch.me/books",
-			"time": 208,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"All book fields are correct": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"All book fields are correct": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				208
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"All book fields are correct": true
-				}
-			]
-		},
-		{
-			"id": "8c3282e0-018b-4122-9ded-7933a1fdc87e",
-			"name": "WTGESBRI.0 - Get Single Book",
-			"url": "https://simple-books-api.glitch.me/books/awdawdawdaw",
-			"time": 132,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 404": true,
-				"Response text 'Not Found'": true,
-				"Receive not null JSON": true,
-				"Receive 'No book with id NaN' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 404": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Not Found'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'No book with id NaN' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				132
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 404": true,
-					"Response text 'Not Found'": true,
-					"Receive not null JSON": true,
-					"Receive 'No book with id NaN' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "267d9592-f8e9-478f-a0e7-620b5f2e93c6",
-			"name": "WTGESBHI.0 - Get Single Book",
-			"url": "https://simple-books-api.glitch.me/books/6",
-			"time": 127,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"Book fields are correct": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Book fields are correct": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				127
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"Book fields are correct": true
-				}
-			]
-		},
-		{
-			"id": "9dfbd902-eba1-488b-87bb-2d6451aed63f",
-			"name": "WTPONO.0 - Create Order",
-			"url": "https://simple-books-api.glitch.me/orders",
-			"time": 184,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 201": true,
-				"Response text 'Created'": true,
-				"Receive not null JSON": true,
-				"Json created true": true,
-				"Json has orderID": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 201": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Created'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Json created true": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Json has orderID": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				184
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 201": true,
-					"Response text 'Created'": true,
-					"Receive not null JSON": true,
-					"Json created true": true,
-					"Json has orderID": true
-				}
-			]
-		},
-		{
-			"id": "224baf4b-387a-4ccd-b227-fa80ac188b03",
-			"name": "WTPONO.1 - Get All Orders",
-			"url": "https://simple-books-api.glitch.me/orders",
-			"time": 156,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"The last created order is added to Orders": true,
-				"Order fields are correct": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The last created order is added to Orders": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Order fields are correct": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				156
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"The last created order is added to Orders": true,
-					"Order fields are correct": true
-				}
-			]
-		},
-		{
-			"id": "61ae246d-4a1c-4b34-837e-8f2b7eb2b93c",
-			"name": "WTPONO.2 - Get Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/EHa2-IXS4yDVI9qIbOFs_",
-			"time": 123,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Saved id is the same as the created": true,
-				"Saved book is the same as requested": true,
-				"Order fields are correct": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Saved id is the same as the created": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Saved book is the same as requested": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Order fields are correct": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				123
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Saved id is the same as the created": true,
-					"Saved book is the same as requested": true,
-					"Order fields are correct": true
-				}
-			]
-		},
-		{
-			"id": "1227b488-8b18-467b-a12f-d827e09c1c11",
-			"name": "WTGESORI.0 - Get Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
-			"time": 119,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 404": true,
-				"Response text 'Not Found'": true,
-				"Receive not null JSON": true,
-				"Receive 'No order with id 'id'.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 404": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Not Found'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'No order with id 'id'.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				119
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 404": true,
-					"Response text 'Not Found'": true,
-					"Receive not null JSON": true,
-					"Receive 'No order with id 'id'.' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "88e7d841-e7c6-48f0-9a19-530c0f722cac",
-			"name": "WTPAUOF.0 - Update customer name on Order",
-			"url": "https://simple-books-api.glitch.me/orders/EHa2-IXS4yDVI9qIbOFs_",
-			"time": 209,
+			"id": "4672e37d-378c-4150-8933-ac2b83ba2ee8",
+			"name": "TC07.1 - Delete Single Order With Token",
+			"url": "https://simple-books-api.glitch.me/orders/hW_FRt1hZTDzYCBf948Ar",
+			"time": 242,
 			"responseCode": {
 				"code": 204,
 				"name": "No Content"
 			},
 			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
 				"Response code 204": true,
 				"Response text 'No Content'": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 204": {
 					"pass": 1,
 					"fail": 0
@@ -1240,259 +942,31 @@
 				}
 			},
 			"times": [
-				209
+				242
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
 					"Response code 204": true,
 					"Response text 'No Content'": true
 				}
 			]
 		},
 		{
-			"id": "93cdd92b-58c3-4406-8e78-862d7483bc7b",
-			"name": "WTPAUOF.1 - Get All Orders",
+			"id": "d7256926-5aa6-4223-8528-1ed04e7871f1",
+			"name": "TC07.2 - Get All Orders With Token",
 			"url": "https://simple-books-api.glitch.me/orders",
-			"time": 137,
+			"time": 729,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
 			},
 			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Receive not null JSON": true,
-				"customerName field has different value": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"customerName field has different value": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				137
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Receive not null JSON": true,
-					"customerName field has different value": true
-				}
-			]
-		},
-		{
-			"id": "8f44fb6c-33ac-4f8f-8d7e-f559bfe1ce8b",
-			"name": "WTPAUOF.2 - Get Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/EHa2-IXS4yDVI9qIbOFs_",
-			"time": 124,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 200": true,
-				"Response text 'OK'": true,
-				"Order fields are correct": true,
-				"customerName field has different value": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'OK'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Order fields are correct": {
-					"pass": 1,
-					"fail": 0
-				},
-				"customerName field has different value": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				124
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 200": true,
-					"Response text 'OK'": true,
-					"Order fields are correct": true,
-					"customerName field has different value": true
-				}
-			]
-		},
-		{
-			"id": "3d94b5ac-c54e-4f21-81f7-e72c0530efef",
-			"name": "WTPAUORI.0 - Update customer name on Order",
-			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
-			"time": 130,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 404": true,
-				"Response text 'Not Found'": true,
-				"Receive not null JSON": true,
-				"Receive 'No order with id 'id'.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 404": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Not Found'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'No order with id 'id'.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				130
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 404": true,
-					"Response text 'Not Found'": true,
-					"Receive not null JSON": true,
-					"Receive 'No order with id 'id'.' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "377f9343-5bec-4faf-81a0-9109c2edd409",
-			"name": "WTDEDO.0 - Delete Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/EHa2-IXS4yDVI9qIbOFs_",
-			"time": 316,
-			"responseCode": {
-				"code": 204,
-				"name": "No Content"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 204": true,
-				"Response text 'No Content'": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 204": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'No Content'": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				316
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 204": true,
-					"Response text 'No Content'": true
-				}
-			]
-		},
-		{
-			"id": "73eec7cc-dae0-4bd6-ab80-c8dfefa94bd3",
-			"name": "WTDEDO.1 - Get All Orders",
-			"url": "https://simple-books-api.glitch.me/orders",
-			"time": 306,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
 				"Response code 200": true,
 				"Response text 'OK'": true,
 				"Receive not null JSON": true,
 				"Order has been deleted from the Json": true
 			},
 			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
 				"Response code 200": {
 					"pass": 1,
 					"fail": 0
@@ -1511,257 +985,101 @@
 				}
 			},
 			"times": [
-				306
+				729
 			],
 			"allTests": [
 				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
 					"Response code 200": true,
 					"Response text 'OK'": true,
 					"Receive not null JSON": true,
 					"Order has been deleted from the Json": true
 				}
 			]
-		},
-		{
-			"id": "6ad25a99-8c61-47cd-b428-dc5db2a8944d",
-			"name": "WTDEDO.2 - Get Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/EHa2-IXS4yDVI9qIbOFs_",
-			"time": 122,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 404": true,
-				"Response text 'Not Found'": true,
-				"Receive not null JSON": true,
-				"Receive 'No order with id 'id'.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 404": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Not Found'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'No order with id 'id'.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				122
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 404": true,
-					"Response text 'Not Found'": true,
-					"Receive not null JSON": true,
-					"Receive 'No order with id 'id'.' in the Json": true
-				}
-			]
-		},
-		{
-			"id": "b9bd1bf3-63a9-4c98-958e-1ad4cfeb4f0b",
-			"name": "WTDEDORI.0 - Delete Single Order",
-			"url": "https://simple-books-api.glitch.me/orders/aidkjwiodjawdpooajdw142142podka",
-			"time": 127,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"The req has the header authorization": true,
-				"The auth header has a token assigned": true,
-				"Response code 404": true,
-				"Response text 'Not Found'": true,
-				"Receive not null JSON": true,
-				"Receive 'No order with id 'id'.' in the Json": true
-			},
-			"testPassFailCounts": {
-				"The req has the header authorization": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The auth header has a token assigned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response code 404": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response text 'Not Found'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive not null JSON": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Receive 'No order with id 'id'.' in the Json": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				127
-			],
-			"allTests": [
-				{
-					"The req has the header authorization": true,
-					"The auth header has a token assigned": true,
-					"Response code 404": true,
-					"Response text 'Not Found'": true,
-					"Receive not null JSON": true,
-					"Receive 'No order with id 'id'.' in the Json": true
-				}
-			]
 		}
 	],
 	"count": 1,
-	"totalTime": 5691,
+	"totalTime": 4823,
 	"collection": {
 		"requests": [
 			{
-				"id": "2dc6a93b-7532-459f-adb7-d367932e6cc3",
+				"id": "44219116-c0d4-477c-aa02-e71323a2e8f6",
+				"method": "GET"
+			},
+			{
+				"id": "94e389da-f31f-4786-a9fd-74a6e2cc74e9",
+				"method": "GET"
+			},
+			{
+				"id": "4c26710b-8fc4-466b-ad7b-710abab6c660",
+				"method": "GET"
+			},
+			{
+				"id": "468bb8c2-f4a1-4052-85fb-56fe795df299",
+				"method": "GET"
+			},
+			{
+				"id": "ad3505a4-f6bf-4e17-bfc0-9cd574faa958",
+				"method": "GET"
+			},
+			{
+				"id": "963d6784-2cc8-4ef3-89a7-55e8d6ba0ae8",
 				"method": "POST"
 			},
 			{
-				"id": "9a1e54e8-4aaf-45b9-97a4-a3fb1575a943",
-				"method": "GET"
-			},
-			{
-				"id": "198e0b33-88af-4fad-bd84-8569e628d629",
-				"method": "GET"
-			},
-			{
-				"id": "4871ed99-c741-4d96-b49e-44823daf2208",
-				"method": "GET"
-			},
-			{
-				"id": "f50a8f50-a2dd-43b1-9d87-fe75ff6de540",
-				"method": "GET"
-			},
-			{
-				"id": "347a8710-5182-4836-8538-3aa1c114ecee",
+				"id": "94a1cf7e-bacd-4b5c-b0d0-c41a36cfa788",
 				"method": "POST"
 			},
 			{
-				"id": "462bbeb3-e88e-45df-879d-58087c08ff7b",
-				"method": "GET"
-			},
-			{
-				"id": "6f76112d-ef94-4fa8-9041-df4bc78ade92",
-				"method": "GET"
-			},
-			{
-				"id": "f2c2bba4-e998-412b-9b3d-47dd03cb89e3",
-				"method": "GET"
-			},
-			{
-				"id": "121df9ed-b42e-4cf4-b908-3ec53a49ccf3",
-				"method": "PATCH"
-			},
-			{
-				"id": "5f073289-885d-472f-bb55-c0cdff4cb77d",
-				"method": "PATCH"
-			},
-			{
-				"id": "0965f804-50fc-450a-897c-3a047abd4e92",
-				"method": "DELETE"
-			},
-			{
-				"id": "1e4b21bb-3cf7-4fdc-8710-a814f65a1441",
-				"method": "DELETE"
-			},
-			{
-				"id": "73f5bf40-7978-41ab-b5b3-81d3ef226940",
+				"id": "b768cf5a-202e-4c24-b16b-fa995d09cc89",
 				"method": "POST"
 			},
 			{
-				"id": "384e08b9-575a-4781-9229-f547f075834e",
-				"method": "GET"
-			},
-			{
-				"id": "65279247-9491-43d0-93b6-d5542d542f04",
-				"method": "GET"
-			},
-			{
-				"id": "8c3282e0-018b-4122-9ded-7933a1fdc87e",
-				"method": "GET"
-			},
-			{
-				"id": "267d9592-f8e9-478f-a0e7-620b5f2e93c6",
-				"method": "GET"
-			},
-			{
-				"id": "9dfbd902-eba1-488b-87bb-2d6451aed63f",
+				"id": "d327a294-60a1-49cb-88bc-a18a337ffc3b",
 				"method": "POST"
 			},
 			{
-				"id": "224baf4b-387a-4ccd-b227-fa80ac188b03",
+				"id": "c8dcfddf-1ac8-4351-822f-d6f370f939ac",
 				"method": "GET"
 			},
 			{
-				"id": "61ae246d-4a1c-4b34-837e-8f2b7eb2b93c",
+				"id": "4002283e-7667-4291-b8de-d6f8e1c0bfce",
 				"method": "GET"
 			},
 			{
-				"id": "1227b488-8b18-467b-a12f-d827e09c1c11",
+				"id": "9e7aeb96-9aaf-40e8-9e18-9d8a054da4ab",
 				"method": "GET"
 			},
 			{
-				"id": "88e7d841-e7c6-48f0-9a19-530c0f722cac",
+				"id": "d56e97a8-37f5-4b44-b56a-a0d100467b24",
+				"method": "GET"
+			},
+			{
+				"id": "c96062f5-046c-407a-a85e-3dea3118e9cd",
 				"method": "PATCH"
 			},
 			{
-				"id": "93cdd92b-58c3-4406-8e78-862d7483bc7b",
-				"method": "GET"
-			},
-			{
-				"id": "8f44fb6c-33ac-4f8f-8d7e-f559bfe1ce8b",
-				"method": "GET"
-			},
-			{
-				"id": "3d94b5ac-c54e-4f21-81f7-e72c0530efef",
+				"id": "a5a803a2-146a-4f52-bef5-2618e707abbd",
 				"method": "PATCH"
 			},
 			{
-				"id": "377f9343-5bec-4faf-81a0-9109c2edd409",
-				"method": "DELETE"
-			},
-			{
-				"id": "73eec7cc-dae0-4bd6-ab80-c8dfefa94bd3",
+				"id": "d22a0c7d-54c7-4fe2-a5f7-530ddfb9fa37",
 				"method": "GET"
 			},
 			{
-				"id": "6ad25a99-8c61-47cd-b428-dc5db2a8944d",
+				"id": "b075007d-ac75-47fb-91c1-0f00f750f4d5",
 				"method": "GET"
 			},
 			{
-				"id": "b9bd1bf3-63a9-4c98-958e-1ad4cfeb4f0b",
+				"id": "ddf8012b-1e13-4fb8-adcb-398418c06db4",
 				"method": "DELETE"
+			},
+			{
+				"id": "4672e37d-378c-4150-8933-ac2b83ba2ee8",
+				"method": "DELETE"
+			},
+			{
+				"id": "d7256926-5aa6-4223-8528-1ed04e7871f1",
+				"method": "GET"
 			}
 		]
 	}
