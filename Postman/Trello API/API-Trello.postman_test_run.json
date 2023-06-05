@@ -1,0 +1,2661 @@
+{
+	"id": "7d3c53c9-798b-432d-b57c-f16aa096c248",
+	"name": "API-Trello",
+	"timestamp": "2023-06-05T08:41:02.698Z",
+	"collection_id": "27570576-81626266-0ef9-4f7a-93db-f36bd87feec9",
+	"folder_id": "27570576-1b14bf3c-1954-4c70-90b7-ec1316089b83",
+	"environment_id": "27570576-7f10fd1e-fcc0-418d-be0c-999d62e9056f",
+	"totalPass": 194,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-06-05T08:40:32.014Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d5720f26-01e5-4d47-af8b-e95e62bb563e",
+			"name": "TC01.1 - Get info of a token",
+			"url": "https://api.trello.com/1/tokens/ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A?key=d991bebe3bf36bc25e34ea31190f8c07&token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A",
+			"time": 348,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				348
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "a27e9c45-baec-4495-9e42-d7604c72477d",
+			"name": "TC01.2 - Get info of a wrong token",
+			"url": "https://api.trello.com/1/tokens/ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF55?key=d991bebe3bf36bc25e34ea31190f8c07&token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A",
+			"time": 178,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Response code 404": true,
+				"Response text 'Not Found'": true
+			},
+			"testPassFailCounts": {
+				"Response code 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Not Found'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				178
+			],
+			"allTests": [
+				{
+					"Response code 404": true,
+					"Response text 'Not Found'": true
+				}
+			]
+		},
+		{
+			"id": "e306079f-d367-4abb-b7bd-a980aeae0536",
+			"name": "TC01.3 - Get info of a token without APIkey",
+			"url": "https://api.trello.com/1/tokens/ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A",
+			"time": 179,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response code 401": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				179
+			],
+			"allTests": [
+				{
+					"Response code 401": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "f85409e5-e7e0-4219-84cb-2f97c419ef09",
+			"name": "TC01.4 - Get info of a token without token",
+			"url": "https://api.trello.com/1/tokens/ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A?key=d991bebe3bf36bc25e34ea31190f8c07",
+			"time": 175,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				175
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "a425ebb1-73b2-4a30-9ea3-6be969f6f0e4",
+			"name": "TC02.1 - Get info of user by the token",
+			"url": "https://api.trello.com/1/tokens/ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A/member?key=d991bebe3bf36bc25e34ea31190f8c07&token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A",
+			"time": 191,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				191
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "ab58ed2b-fcf8-42cc-baf0-fa041ba41a8b",
+			"name": "TC03.1 - Create a board",
+			"url": "https://api.trello.com/1/boards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&name=Strategic System&key=AUTH_VALUE",
+			"time": 390,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				390
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "e1f77998-6c67-4763-ba43-3bc922b21e71",
+			"name": "TC03.2 - Get a board",
+			"url": "https://api.trello.com/1/boards/647d9f81ecae5083bed80b62?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 200,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The board has been added with a correct id": true,
+				"The board has been added with a correct name": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The board has been added with a correct id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The board has been added with a correct name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				200
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The board has been added with a correct id": true,
+					"The board has been added with a correct name": true
+				}
+			]
+		},
+		{
+			"id": "750b1377-877d-4578-b3c7-ae8e67687ee9",
+			"name": "TC04.1 - Change the name of a board",
+			"url": "https://api.trello.com/1/boards/647d9f81ecae5083bed80b62?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&name=Robust Kit&key=AUTH_VALUE",
+			"time": 269,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"Changed the same board as specifyed": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Changed the same board as specifyed": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				269
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"Changed the same board as specifyed": true
+				}
+			]
+		},
+		{
+			"id": "7437a879-f9b1-401f-ac6a-ad953deca6f7",
+			"name": "TC04.2 - Get a board",
+			"url": "https://api.trello.com/1/boards/647d9f81ecae5083bed80b62?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 193,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The board name has been changed": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The board name has been changed": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				193
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The board name has been changed": true
+				}
+			]
+		},
+		{
+			"id": "11bb3bf6-03bc-453e-870e-f6cf3bcd3e90",
+			"name": "TC05.1 - Delete a board",
+			"url": "https://api.trello.com/1/boards/647d9f81ecae5083bed80b62?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 1265,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The board has been deleted": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The board has been deleted": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1265
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The board has been deleted": true
+				}
+			]
+		},
+		{
+			"id": "d8bae809-e444-4190-98a5-6f6dd1e8ac12",
+			"name": "TC05.2 - Get a board",
+			"url": "https://api.trello.com/1/boards/647d9f81ecae5083bed80b62?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 188,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Response code 404": true,
+				"Response text 'Not Found'": true
+			},
+			"testPassFailCounts": {
+				"Response code 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'Not Found'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				188
+			],
+			"allTests": [
+				{
+					"Response code 404": true,
+					"Response text 'Not Found'": true
+				}
+			]
+		},
+		{
+			"id": "c7fc848b-53fe-4280-ae33-1be5d400b8fe",
+			"name": "TC05.3 - Get all Boards",
+			"url": "https://api.trello.com/1/members/me/boards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 296,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The board hasn't been found in the list": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The board hasn't been found in the list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				296
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The board hasn't been found in the list": true
+				}
+			]
+		},
+		{
+			"id": "c8b7a379-e00f-4744-bcbe-8c6506f5ea84",
+			"name": "TC06.1 - Create a board",
+			"url": "https://api.trello.com/1/boards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&name=Agile Hub&key=AUTH_VALUE",
+			"time": 431,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				431
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "65edf47a-7cc5-43ac-aca6-d13079c883f3",
+			"name": "TC06.2 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8545f9be51cf897720&name=Important To-Dos&key=AUTH_VALUE",
+			"time": 271,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				271
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "a192c665-ee91-41f3-bf39-6f1885161f2e",
+			"name": "TC06.3 - Get a list",
+			"url": "https://api.trello.com/1/lists/647d9f854248f42ae52c5aac?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 512,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The list has been added with a correct id": true,
+				"The list has been added with a correct name": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list has been added with a correct id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list has been added with a correct name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				512
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The list has been added with a correct id": true,
+					"The list has been added with a correct name": true
+				}
+			]
+		},
+		{
+			"id": "8d4bcca5-f9c7-4e35-a504-9acb0e6f1295",
+			"name": "TC07.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8545f9be51cf897720&name=Crucial Targets&key=AUTH_VALUE",
+			"time": 265,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				265
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "cfb41b54-c31f-4fa3-8cd5-9cdbb197727e",
+			"name": "TC07.2 - Change the name of a list",
+			"url": "https://api.trello.com/1/lists/647d9f8672722f852436d347?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&name=Critical Tasks&key=AUTH_VALUE",
+			"time": 440,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				440
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "ad2ec51f-951b-47b8-bc63-731484452c5d",
+			"name": "TC07.3 - Get a list",
+			"url": "https://api.trello.com/1/lists/647d9f8672722f852436d347?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 201,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The list name has been updated": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list name has been updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				201
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The list name has been updated": true
+				}
+			]
+		},
+		{
+			"id": "fee93925-b313-4b5f-83ee-0b17b9ecf949",
+			"name": "TC08.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8545f9be51cf897720&name=Significant Goals&key=AUTH_VALUE",
+			"time": 251,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				251
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "1e1868ce-1d13-411f-8072-3b6b2e699966",
+			"name": "TC08.2 - Get a list",
+			"url": "https://api.trello.com/1/lists/647d9f87a975aabebaa626b1?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 237,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The list has been added with a correct id": true,
+				"The list has been added with a correct name": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list has been added with a correct id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list has been added with a correct name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				237
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The list has been added with a correct id": true,
+					"The list has been added with a correct name": true
+				}
+			]
+		},
+		{
+			"id": "c2e2a99a-5abc-4241-ade8-dfef9beaa29a",
+			"name": "TC08.3 - Create a board",
+			"url": "https://api.trello.com/1/boards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&name=Dynamic Workspace&key=AUTH_VALUE",
+			"time": 427,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				427
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "8f416292-72f9-4cee-ae8d-54e78462ffb1",
+			"name": "TC08.4 - Move a list to a board",
+			"url": "https://api.trello.com/1/lists/647d9f87a975aabebaa626b1?idBoard=647d9f8856b0cb44db7653b8&token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 450,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				450
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "98b15694-58ce-4dd4-8fb6-a749b7df6869",
+			"name": "TC08.5 - Get a list",
+			"url": "https://api.trello.com/1/lists/647d9f87a975aabebaa626b1?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 194,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The list board has been changed": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list board has been changed": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				194
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The list board has been changed": true
+				}
+			]
+		},
+		{
+			"id": "0a70d51b-65ea-482a-b49d-3a26e2399d87",
+			"name": "TC09.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Essential Tasks&key=AUTH_VALUE",
+			"time": 242,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				242
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "f7ddda28-f81e-49df-91e5-1e7aa76ac361",
+			"name": "TC09.2 - Get a list Copy",
+			"url": "https://api.trello.com/1/lists/647d9f89485d671eb168d53a?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 200,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The list board status is not closed": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list board status is not closed": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				200
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The list board status is not closed": true
+				}
+			]
+		},
+		{
+			"id": "ecc740af-8be5-4642-bfea-8bd71fb9a6d3",
+			"name": "TC09.3 - Archive a list",
+			"url": "https://api.trello.com/1/lists/647d9f89485d671eb168d53a/?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 246,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				246
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "892a5f5d-0c0a-410b-b754-848ac713e5be",
+			"name": "TC09.4 - Get a list",
+			"url": "https://api.trello.com/1/lists/647d9f89485d671eb168d53a?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 188,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The list board status is closed": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The list board status is closed": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				188
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The list board status is closed": true
+				}
+			]
+		},
+		{
+			"id": "b38fe339-e2f2-4054-ae40-4483d7bd3177",
+			"name": "TC10.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Prominent Tasks&key=AUTH_VALUE",
+			"time": 252,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				252
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "ee8a36ca-4b9f-4329-a85f-711709ada8e5",
+			"name": "TC10.2 - Create a card on a list",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f8a5d740b5abf353ca9&name=Resolve Issue&key=AUTH_VALUE",
+			"time": 332,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				332
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "29c6b49a-4149-4a5f-a93f-2d778c1898e7",
+			"name": "TC10.3 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f8a5d740b5abf353ca9/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 199,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card has been added to the correct board": true,
+				"The card has been added to the correct list": true,
+				"The card has been added with a correct id": true,
+				"The card has been added with a correct name": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card has been added to the correct board": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card has been added to the correct list": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card has been added with a correct id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card has been added with a correct name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				199
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card has been added to the correct board": true,
+					"The card has been added to the correct list": true,
+					"The card has been added with a correct id": true,
+					"The card has been added with a correct name": true
+				}
+			]
+		},
+		{
+			"id": "2bb108c6-65ad-4563-88de-2fbe085c1662",
+			"name": "TC11.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Significant Milestones&key=AUTH_VALUE",
+			"time": 270,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				270
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "6b22a7c3-1504-4e71-a13a-436d55f59d89",
+			"name": "TC11.2 - Create a card on a list",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f8b54137b4d97511885&name=Resolve Requirement&key=AUTH_VALUE",
+			"time": 393,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				393
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "69cafc81-34d5-485c-97dd-3ba0c7e3f23b",
+			"name": "TC11.3 - Change the name of a card",
+			"url": "https://api.trello.com/1/cards/647d9f8c730050ed211eaba5?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&name=Complete Requirement&key=AUTH_VALUE",
+			"time": 272,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				272
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "e683612d-eafa-488b-9552-1f6401d56a2f",
+			"name": "TC11.4 - Get a card",
+			"url": "https://api.trello.com/1/cards/647d9f8c730050ed211eaba5?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 199,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card name has been updated": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card name has been updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				199
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card name has been updated": true
+				}
+			]
+		},
+		{
+			"id": "fde22d7b-f3f4-48ca-9528-a7343eb2aa4e",
+			"name": "TC12.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Pivotal Milestones&key=AUTH_VALUE",
+			"time": 265,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				265
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "1023e3e3-970d-4413-a7e9-db58f3177e99",
+			"name": "TC12.2 - Create a card on a list",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f8d0f2eca8159ffb0fe&name=Resolve Idea&key=AUTH_VALUE",
+			"time": 344,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				344
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "73865e46-9cf6-4915-a322-cbfac29decc4",
+			"name": "TC12.3 - Change the color of a card",
+			"url": "https://api.trello.com/1/cards/647d9f8d0265ffa953e88477?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 672,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				672
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "6e771660-06be-4c4f-8c30-58ff461ae4c4",
+			"name": "TC12.4 - Get a card from a board",
+			"url": "https://api.trello.com/1/boards/647d9f8856b0cb44db7653b8/cards/647d9f8d0265ffa953e88477?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 484,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card color has been updated": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card color has been updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				484
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card color has been updated": true
+				}
+			]
+		},
+		{
+			"id": "f2123c78-59dc-47e4-9e3d-e91f4873aca2",
+			"name": "TC13.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Vital To-Dos&key=AUTH_VALUE",
+			"time": 244,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				244
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "3ca9ed25-7359-4919-a852-bc92894550be",
+			"name": "TC13.2 - Create a card on a list",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f8fb05d059c06fbe173&name=Review Idea&key=AUTH_VALUE",
+			"time": 326,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				326
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "8f3f9c30-3028-42ce-b121-8b8ac418a1b9",
+			"name": "TC13.3 - Delete a card",
+			"url": "https://api.trello.com/1/cards/647d9f8f2d8354744409072b?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 544,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				544
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "71cf5edb-9be4-432b-aae4-cbe3c4eeca29",
+			"name": "TC13.4 - Get all cards from a board",
+			"url": "https://api.trello.com/1/boards/647d9f8856b0cb44db7653b8/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 212,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"The card hasn't been found in the list": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card hasn't been found in the list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				212
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"The card hasn't been found in the list": true
+				}
+			]
+		},
+		{
+			"id": "71415d6f-c891-4834-a87d-51ea57274f80",
+			"name": "TC14.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Pivotal Milestones&key=AUTH_VALUE",
+			"time": 255,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				255
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "de178bfc-218f-4896-99d7-376e8331c05c",
+			"name": "TC14.2 - Create multiple cards",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f919e557d51a2700b27&name=Update Task&key=AUTH_VALUE",
+			"time": 387,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				387
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "fc7c32fb-6b21-4316-ba30-122d4c01f36e",
+			"name": "TC14.3 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f919e557d51a2700b27/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 204,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card QTY corresponds with the requested": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card QTY corresponds with the requested": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				204
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card QTY corresponds with the requested": true
+				}
+			]
+		},
+		{
+			"id": "ba90ecb0-01c9-4c31-94d2-e0cb84fcfb11",
+			"name": "TC14.4 - Archive all cards in a list",
+			"url": "https://api.trello.com/1/lists/647d9f919e557d51a2700b27/archiveAllCards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 549,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				549
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "c0703397-6f97-4b8f-a4ab-0ac101938e0c",
+			"name": "TC14.5 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f919e557d51a2700b27/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 467,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				467
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "11eb4418-14a6-4e46-96df-d9950b498c57",
+			"name": "TC15.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Crucial Goals&key=AUTH_VALUE",
+			"time": 291,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				291
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "c9f9cd7b-ada7-47e2-a1bc-c351493c3dee",
+			"name": "TC15.2 - Create a card on a list",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f975f9b59ad5fa4557f&name=Complete Bug&key=AUTH_VALUE",
+			"time": 373,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				373
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "5945c180-d702-4cdf-af8d-4866ab35c3f4",
+			"name": "TC15.3 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f975f9b59ad5fa4557f/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 231,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card has been added to the list": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card has been added to the list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				231
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card has been added to the list": true
+				}
+			]
+		},
+		{
+			"id": "8d80c6db-b9ef-4c8a-912b-77163c6df955",
+			"name": "TC15.4 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Critical To-Dos&key=AUTH_VALUE",
+			"time": 792,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				792
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "a6fa79fd-cdf7-4a4d-9f20-23a047970c38",
+			"name": "TC15.5 - Move a card from a list to a list",
+			"url": "https://api.trello.com/1/cards/647d9f9761ed5bf09eba4338?idList=647d9f9801e0b1bb28a1c845&token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 635,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				635
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "1c0fab68-db7a-44f0-a1aa-f32bd7580aeb",
+			"name": "TC15.6 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f9801e0b1bb28a1c845/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 213,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card it's on a different list": true,
+				"The card is on the created list": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card it's on a different list": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card is on the created list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				213
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card it's on a different list": true,
+					"The card is on the created list": true
+				}
+			]
+		},
+		{
+			"id": "db20c312-e170-41b9-a1b6-f9e428593756",
+			"name": "TC16.1 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Key Milestones&key=AUTH_VALUE",
+			"time": 275,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				275
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "7950595b-511e-4377-b7ab-78b031bc4419",
+			"name": "TC16.2 - Create multiple cards",
+			"url": "https://api.trello.com/1/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idList=647d9f9a8fb9009fb51bd7e5&name=Resolve Feature&key=AUTH_VALUE",
+			"time": 826,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				826
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true
+				}
+			]
+		},
+		{
+			"id": "5cebaee0-8eee-48d9-88e9-d333ed069c21",
+			"name": "TC16.3 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f9a8fb9009fb51bd7e5/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 553,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true,
+				"The card QTY corresponds with the requested": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The card QTY corresponds with the requested": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				553
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true,
+					"The card QTY corresponds with the requested": true
+				}
+			]
+		},
+		{
+			"id": "0066a3ca-20d4-4964-9448-e58d7293bfc9",
+			"name": "TC16.4 - Create a list on a board",
+			"url": "https://api.trello.com/1/lists?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&idBoard=647d9f8856b0cb44db7653b8&name=Key Tasks&key=AUTH_VALUE",
+			"time": 325,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				325
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "57143ea2-13e7-43fa-91da-00eb7aceda23",
+			"name": "TC16.5 - Move all cards in a list to a list",
+			"url": "https://api.trello.com/1/lists/647d9f9a8fb9009fb51bd7e5/moveAllCards?idBoard=647d9f8856b0cb44db7653b8&idList=647d9f9de6933c210c23794a&token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 663,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive not empty JSON": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive not empty JSON": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				663
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive not empty JSON": true
+				}
+			]
+		},
+		{
+			"id": "5c9552d8-1056-497f-b01b-1212b62ac5e6",
+			"name": "TC16.6 - Get all cards from a list",
+			"url": "https://api.trello.com/1/lists/647d9f9de6933c210c23794a/cards?token=ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF5A&key=AUTH_VALUE",
+			"time": 234,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response code 200": true,
+				"Response text 'OK'": true,
+				"Receive empty JSON": true,
+				"All cards are on a different list": true,
+				"All cards are on the new list": true
+			},
+			"testPassFailCounts": {
+				"Response code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Receive empty JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All cards are on a different list": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All cards are on the new list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				234
+			],
+			"allTests": [
+				{
+					"Response code 200": true,
+					"Response text 'OK'": true,
+					"Receive empty JSON": true,
+					"All cards are on a different list": true,
+					"All cards are on the new list": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 20708,
+	"collection": {
+		"requests": [
+			{
+				"id": "d5720f26-01e5-4d47-af8b-e95e62bb563e",
+				"method": "GET"
+			},
+			{
+				"id": "a27e9c45-baec-4495-9e42-d7604c72477d",
+				"method": "GET"
+			},
+			{
+				"id": "e306079f-d367-4abb-b7bd-a980aeae0536",
+				"method": "GET"
+			},
+			{
+				"id": "f85409e5-e7e0-4219-84cb-2f97c419ef09",
+				"method": "GET"
+			},
+			{
+				"id": "a425ebb1-73b2-4a30-9ea3-6be969f6f0e4",
+				"method": "GET"
+			},
+			{
+				"id": "ab58ed2b-fcf8-42cc-baf0-fa041ba41a8b",
+				"method": "POST"
+			},
+			{
+				"id": "e1f77998-6c67-4763-ba43-3bc922b21e71",
+				"method": "GET"
+			},
+			{
+				"id": "750b1377-877d-4578-b3c7-ae8e67687ee9",
+				"method": "PUT"
+			},
+			{
+				"id": "7437a879-f9b1-401f-ac6a-ad953deca6f7",
+				"method": "GET"
+			},
+			{
+				"id": "11bb3bf6-03bc-453e-870e-f6cf3bcd3e90",
+				"method": "DELETE"
+			},
+			{
+				"id": "d8bae809-e444-4190-98a5-6f6dd1e8ac12",
+				"method": "GET"
+			},
+			{
+				"id": "c7fc848b-53fe-4280-ae33-1be5d400b8fe",
+				"method": "GET"
+			},
+			{
+				"id": "c8b7a379-e00f-4744-bcbe-8c6506f5ea84",
+				"method": "POST"
+			},
+			{
+				"id": "65edf47a-7cc5-43ac-aca6-d13079c883f3",
+				"method": "POST"
+			},
+			{
+				"id": "a192c665-ee91-41f3-bf39-6f1885161f2e",
+				"method": "GET"
+			},
+			{
+				"id": "8d4bcca5-f9c7-4e35-a504-9acb0e6f1295",
+				"method": "POST"
+			},
+			{
+				"id": "cfb41b54-c31f-4fa3-8cd5-9cdbb197727e",
+				"method": "PUT"
+			},
+			{
+				"id": "ad2ec51f-951b-47b8-bc63-731484452c5d",
+				"method": "GET"
+			},
+			{
+				"id": "fee93925-b313-4b5f-83ee-0b17b9ecf949",
+				"method": "POST"
+			},
+			{
+				"id": "1e1868ce-1d13-411f-8072-3b6b2e699966",
+				"method": "GET"
+			},
+			{
+				"id": "c2e2a99a-5abc-4241-ade8-dfef9beaa29a",
+				"method": "POST"
+			},
+			{
+				"id": "8f416292-72f9-4cee-ae8d-54e78462ffb1",
+				"method": "PUT"
+			},
+			{
+				"id": "98b15694-58ce-4dd4-8fb6-a749b7df6869",
+				"method": "GET"
+			},
+			{
+				"id": "0a70d51b-65ea-482a-b49d-3a26e2399d87",
+				"method": "POST"
+			},
+			{
+				"id": "f7ddda28-f81e-49df-91e5-1e7aa76ac361",
+				"method": "GET"
+			},
+			{
+				"id": "ecc740af-8be5-4642-bfea-8bd71fb9a6d3",
+				"method": "PUT"
+			},
+			{
+				"id": "892a5f5d-0c0a-410b-b754-848ac713e5be",
+				"method": "GET"
+			},
+			{
+				"id": "b38fe339-e2f2-4054-ae40-4483d7bd3177",
+				"method": "POST"
+			},
+			{
+				"id": "ee8a36ca-4b9f-4329-a85f-711709ada8e5",
+				"method": "POST"
+			},
+			{
+				"id": "29c6b49a-4149-4a5f-a93f-2d778c1898e7",
+				"method": "GET"
+			},
+			{
+				"id": "2bb108c6-65ad-4563-88de-2fbe085c1662",
+				"method": "POST"
+			},
+			{
+				"id": "6b22a7c3-1504-4e71-a13a-436d55f59d89",
+				"method": "POST"
+			},
+			{
+				"id": "69cafc81-34d5-485c-97dd-3ba0c7e3f23b",
+				"method": "PUT"
+			},
+			{
+				"id": "e683612d-eafa-488b-9552-1f6401d56a2f",
+				"method": "GET"
+			},
+			{
+				"id": "fde22d7b-f3f4-48ca-9528-a7343eb2aa4e",
+				"method": "POST"
+			},
+			{
+				"id": "1023e3e3-970d-4413-a7e9-db58f3177e99",
+				"method": "POST"
+			},
+			{
+				"id": "73865e46-9cf6-4915-a322-cbfac29decc4",
+				"method": "PUT"
+			},
+			{
+				"id": "6e771660-06be-4c4f-8c30-58ff461ae4c4",
+				"method": "GET"
+			},
+			{
+				"id": "f2123c78-59dc-47e4-9e3d-e91f4873aca2",
+				"method": "POST"
+			},
+			{
+				"id": "3ca9ed25-7359-4919-a852-bc92894550be",
+				"method": "POST"
+			},
+			{
+				"id": "8f3f9c30-3028-42ce-b121-8b8ac418a1b9",
+				"method": "DELETE"
+			},
+			{
+				"id": "71cf5edb-9be4-432b-aae4-cbe3c4eeca29",
+				"method": "GET"
+			},
+			{
+				"id": "71415d6f-c891-4834-a87d-51ea57274f80",
+				"method": "POST"
+			},
+			{
+				"id": "de178bfc-218f-4896-99d7-376e8331c05c",
+				"method": "POST"
+			},
+			{
+				"id": "fc7c32fb-6b21-4316-ba30-122d4c01f36e",
+				"method": "GET"
+			},
+			{
+				"id": "ba90ecb0-01c9-4c31-94d2-e0cb84fcfb11",
+				"method": "POST"
+			},
+			{
+				"id": "c0703397-6f97-4b8f-a4ab-0ac101938e0c",
+				"method": "GET"
+			},
+			{
+				"id": "11eb4418-14a6-4e46-96df-d9950b498c57",
+				"method": "POST"
+			},
+			{
+				"id": "c9f9cd7b-ada7-47e2-a1bc-c351493c3dee",
+				"method": "POST"
+			},
+			{
+				"id": "5945c180-d702-4cdf-af8d-4866ab35c3f4",
+				"method": "GET"
+			},
+			{
+				"id": "8d80c6db-b9ef-4c8a-912b-77163c6df955",
+				"method": "POST"
+			},
+			{
+				"id": "a6fa79fd-cdf7-4a4d-9f20-23a047970c38",
+				"method": "PUT"
+			},
+			{
+				"id": "1c0fab68-db7a-44f0-a1aa-f32bd7580aeb",
+				"method": "GET"
+			},
+			{
+				"id": "db20c312-e170-41b9-a1b6-f9e428593756",
+				"method": "POST"
+			},
+			{
+				"id": "7950595b-511e-4377-b7ab-78b031bc4419",
+				"method": "POST"
+			},
+			{
+				"id": "5cebaee0-8eee-48d9-88e9-d333ed069c21",
+				"method": "GET"
+			},
+			{
+				"id": "0066a3ca-20d4-4964-9448-e58d7293bfc9",
+				"method": "POST"
+			},
+			{
+				"id": "57143ea2-13e7-43fa-91da-00eb7aceda23",
+				"method": "POST"
+			},
+			{
+				"id": "5c9552d8-1056-497f-b01b-1212b62ac5e6",
+				"method": "GET"
+			}
+		]
+	}
+}
