@@ -1,0 +1,5206 @@
+{
+	"info": {
+		"_postman_id": "81626266-0ef9-4f7a-93db-f36bd87feec9",
+		"name": "API-Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27570576"
+	},
+	"item": [
+		{
+			"name": "EndPoints",
+			"item": [
+				{
+					"name": "Token",
+					"item": [
+						{
+							"name": "Get info of a token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/{{token}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"{{token}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get info of user by the token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/{{token}}/member?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"{{token}}",
+										"member"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Boards",
+					"item": [
+						{
+							"name": "Create a board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewBoard', newRndBoardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.environment.set('idNewBoard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards?token={{token}}&name={{nameNewBoard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Boards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/members/me/boards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"members",
+										"me",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change the name of a board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewBoard', newRndBoardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}&name={{nameNewBoard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a board",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a board",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Lists",
+					"item": [
+						{
+							"name": "Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all lists from a board",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}/lists?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change the name of a list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Archive a list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"closed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										""
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Move a list to a board",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?idBoard={{idNewBoard}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cards",
+					"item": [
+						{
+							"name": "Create a card on a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all cards from a list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all cards from a board",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a card from a board",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change the name of a card",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change the color of a card",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('colorNew', '{\"cover\":{\"color\": \"'+newRndColor()+'\"}}');\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{colorNew}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a card",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a card",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Archive all cards in a list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/archiveAllCards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"archiveAllCards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Move a card from a list to a list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?idList={{idNewList}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Move all cards in a list to a list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/moveAllCards?idBoard={{idNewBoard}}&idList={{idNewList}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"moveAllCards"
+									],
+									"query": [
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{APIKey}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "key",
+						"type": "string"
+					},
+					{
+						"key": "in",
+						"value": "query",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Regression Pack",
+			"item": [
+				{
+					"name": "TC01 - Get Token",
+					"item": [
+						{
+							"name": "TC01.1 - Get info of a token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/{{token}}?key={{APIKey}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"{{token}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{APIKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC01.2 - Get info of a wrong token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response code 404\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'Not Found'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF55?key={{APIKey}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"ATTA9ea06a97b9abd2e5a9c8a952fe7ce25ae1345eecb37f63d2229f6dfff4ee236f206FDF55"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{APIKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC01.3 - Get info of a token without APIkey",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response code 401\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('Unauthorized');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/{{token}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"{{token}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{APIKey}}",
+											"disabled": true
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC01.4 - Get info of a token without token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/{{token}}?key={{APIKey}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"{{token}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{APIKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TC02 - Get user by token",
+					"item": [
+						{
+							"name": "TC02.1 - Get info of user by the token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/tokens/{{token}}/member?key={{APIKey}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"tokens",
+										"{{token}}",
+										"member"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{APIKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TC03 - Create a board",
+					"item": [
+						{
+							"name": "TC03.1 - Create a board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewBoard', newRndBoardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewBoard', mainJson.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards?token={{token}}&name={{nameNewBoard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC03.2 - Get a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The board has been added with a correct id\", function() {\r",
+											"    pm.expect(mainJson.id).to.be.eql(pm.environment.get('idNewBoard'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The board has been added with a correct name\", function() {\r",
+											"    pm.expect(mainJson.name).to.be.eql(pm.environment.get('nameNewBoard'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC04 - Create a board and change it's name",
+					"item": [
+						{
+							"name": "TC04.1 - Change the name of a board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewBoard', newRndBoardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Changed the same board as specifyed\", function(){\r",
+											"    pm.expect(mainJson.id).to.be.eql(pm.environment.get('idNewBoard'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}&name={{nameNewBoard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC04.2 - Get a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The board name has been changed\", function() {\r",
+											"    pm.expect(mainJson.id).to.be.eql(pm.environment.get('idNewBoard'));\r",
+											"    pm.expect(mainJson.name).not.to.be.eql(pm.environment.get('namePastBoard'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC05 - Create a board and delete it",
+					"item": [
+						{
+							"name": "TC05.1 - Delete a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The board has been deleted\", function() {\r",
+											"    pm.expect(mainJson._value).to.be.eql(null);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC05.2 - Get a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response code 404\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'Not Found'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('Not Found');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC05.3 - Get all Boards",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The board hasn't been found in the list\", function() {\r",
+											"    let found = false;\r",
+											"    for (let i = 0; i < mainJson.length; i++) {if (mainJson[i].id === pm.environment.get('idNewBoard')) {found = true;}}\r",
+											"    pm.expect(found).not.to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/members/me/boards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"members",
+										"me",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC06 - Create a list inside a board",
+					"item": [
+						{
+							"name": "TC06.1 - Create a board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewBoard', newRndBoardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewBoard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards?token={{token}}&name={{nameNewBoard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC06.2 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC06.3 - Get a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list has been added with a correct id\", function() {\r",
+											"    pm.expect(mainJson.id).to.be.eql(pm.environment.get('idNewList'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list has been added with a correct name\", function() {\r",
+											"    pm.expect(mainJson.name).to.be.eql(pm.environment.get('nameNewList'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC07 - Create a list and change it's name",
+					"item": [
+						{
+							"name": "TC07.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC07.2 - Change the name of a list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC07.3 - Get a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list name has been updated\", function() {\r",
+											"    pm.expect(pm.environment.get('namePastList')).not.to.be.eql(mainJson.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC08 - Create a list and move it to another board",
+					"item": [
+						{
+							"name": "TC08.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC08.2 - Get a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list has been added with a correct id\", function() {\r",
+											"    pm.expect(mainJson.id).to.be.eql(pm.environment.get('idNewList'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list has been added with a correct name\", function() {\r",
+											"    pm.expect(mainJson.name).to.be.eql(pm.environment.get('nameNewList'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC08.3 - Create a board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewBoard', newRndBoardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewBoard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards?token={{token}}&name={{nameNewBoard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC08.4 - Move a list to a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?idBoard={{idNewBoard}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC08.5 - Get a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list board has been changed\", function() {\r",
+											"    pm.expect(pm.environment.get('idPastBoard')).not.to.be.eql(mainJson.idBoard);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC09 - Create a list and archive it",
+					"item": [
+						{
+							"name": "TC09.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC09.2 - Get a list Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list board status is not closed\", function() {\r",
+											"    pm.expect(mainJson.closed).to.be.false;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC09.3 - Archive a list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"closed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										""
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC09.4 - Get a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The list board status is closed\", function() {\r",
+											"    pm.expect(mainJson.closed).to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC10 - Create a card inside a list",
+					"item": [
+						{
+							"name": "TC10.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC10.2 - Create a card on a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC10.3 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card has been added to the correct board\", function() {\r",
+											"    pm.expect(mainJson[0].idBoard).to.be.eql(pm.environment.get('idNewBoard'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card has been added to the correct list\", function() {\r",
+											"    pm.expect(mainJson[0].idList).to.be.eql(pm.environment.get('idNewList'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card has been added with a correct id\", function() {\r",
+											"    pm.expect(mainJson[0].id).to.be.eql(pm.environment.get('idNewCard'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card has been added with a correct name\", function() {\r",
+											"    pm.expect(mainJson[0].name).to.be.eql(pm.environment.get('nameNewCard'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC11 - Create a card and change it's name",
+					"item": [
+						{
+							"name": "TC11.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC11.2 - Create a card on a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);\r",
+											"pm.environment.set('nameLastCard', mainJson.name);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC11.3 - Change the name of a card",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC11.4 - Get a card",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card name has been updated\", function() {\r",
+											"    pm.expect(pm.environment.get('nameLastCard')).not.to.be.eql(mainJson.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC12 - Create a card and change it's color",
+					"item": [
+						{
+							"name": "TC12.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC12.2 - Create a card on a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);\r",
+											"pm.environment.set('colorNewCard', mainJson.cover.color);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC12.3 - Change the color of a card",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('colorNew', '{\"cover\":{\"color\": \"'+newRndColor()+'\"}}');\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{colorNew}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC12.4 - Get a card from a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card color has been updated\", function() {\r",
+											"    pm.expect(pm.environment.get('colorNewCard')).not.to.be.eql(mainJson.cover.color);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC13 - Create a card delete it",
+					"item": [
+						{
+							"name": "TC13.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC13.2 - Create a card on a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC13.3 - Delete a card",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC13.4 - Get all cards from a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card hasn't been found in the list\", function() {\r",
+											"    let found = false;\r",
+											"    for (let i = 0; i < mainJson.length; i++) {if (mainJson[i].id === pm.environment.get('idNewBoard')) {found = true;}}\r",
+											"    pm.expect(found).not.to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/boards/{{idNewBoard}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{idNewBoard}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC14 - Create multiple cards and archive 'em all",
+					"item": [
+						{
+							"name": "TC14.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC14.2 - Create multiple cards",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);\r",
+											"\r",
+											"for (var i = 0; i < pm.environment.get('cardCount')-1; i++) {\r",
+											"    pm.sendRequest(pm.request, function(err, response) {});\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());\r",
+											"pm.environment.set('cardCount', 5);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC14.3 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card QTY corresponds with the requested\", function() {\r",
+											"    pm.expect(mainJson.length).to.be.eql(pm.environment.get('cardCount'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC14.4 - Archive all cards in a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive empty JSON\", function() {\r",
+											"    pm.expect(mainJson).to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/archiveAllCards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"archiveAllCards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC14.5 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive empty JSON\", function() {\r",
+											"    pm.expect(mainJson).to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC15 - Create a card and move it to other list",
+					"item": [
+						{
+							"name": "TC15.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);\r",
+											"pm.environment.set('idPastList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC15.2 - Create a card on a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC15.3 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card has been added to the list\", function() {\r",
+											"    let found = false;\r",
+											"    for (let i = 0; i < mainJson.length; i++) {if (mainJson[i].id === pm.environment.get('idNewCard')) {found = true;}}\r",
+											"    pm.expect(found).to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC15.4 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC15.5 - Move a card from a list to a list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards/{{idNewCard}}?idList={{idNewList}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards",
+										"{{idNewCard}}"
+									],
+									"query": [
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC15.6 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card it's on a different list\", function() {\r",
+											"    pm.expect(mainJson[0].idList).not.to.be.eql(pm.environment.get('idPastList'));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card is on the created list\", function() {\r",
+											"    pm.expect(mainJson[0].idList).to.be.eql(pm.environment.get('idNewList'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "TC16 - Create multiple cards and move 'em to other list",
+					"item": [
+						{
+							"name": "TC16.1 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);\r",
+											"pm.environment.set('idPastList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC16.2 - Create multiple cards",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewCard', mainJson.id);\r",
+											"\r",
+											"for (var i = 0; i < pm.environment.get('cardCount')-1; i++) {\r",
+											"    pm.sendRequest(pm.request, function(err, response) {});\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewCard', newRndCardName());\r",
+											"pm.environment.set('cardCount', 5);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/cards?token={{token}}&idList={{idNewList}}&name={{nameNewCard}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewCard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC16.3 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The card QTY corresponds with the requested\", function() {\r",
+											"    pm.expect(mainJson.length).to.be.eql(pm.environment.get('cardCount'));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC16.4 - Create a list on a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.environment.set('idNewList', mainJson.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set('nameNewList', newRndListName());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists?token={{token}}&idBoard={{idNewBoard}}&name={{nameNewList}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										},
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "name",
+											"value": "{{nameNewList}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC16.5 - Move all cards in a list to a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive not empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idPastList}}/moveAllCards?idBoard={{idNewBoard}}&idList={{idNewList}}&token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idPastList}}",
+										"moveAllCards"
+									],
+									"query": [
+										{
+											"key": "idBoard",
+											"value": "{{idNewBoard}}"
+										},
+										{
+											"key": "idList",
+											"value": "{{idNewList}}"
+										},
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TC16.6 - Get all cards from a list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let mainJson = JSON.parse(responseBody);\r",
+											"\r",
+											"pm.test(\"Response code 200\", function() {\r",
+											"    pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response text 'OK'\", function() {\r",
+											"    pm.expect(pm.response.status).to.eql('OK');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Receive empty JSON\", function() {\r",
+											"    pm.expect(mainJson).not.to.be.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"All cards are on a different list\", function() {\r",
+											"    for (let i = 0; i < mainJson.length; i++) {\r",
+											"        pm.expect(mainJson[i].idList).not.to.be.eql(pm.environment.get('idPastList'));\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"pm.test(\"All cards are on the new list\", function() {\r",
+											"    for (let i = 0; i < mainJson.length; i++) {\r",
+											"        pm.expect(mainJson[i].idList).to.be.eql(pm.environment.get('idNewList'));\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainURL}}/1/lists/{{idNewList}}/cards?token={{token}}",
+									"host": [
+										"{{mainURL}}"
+									],
+									"path": [
+										"1",
+										"lists",
+										"{{idNewList}}",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "in",
+								"value": "query",
+								"type": "string"
+							},
+							{
+								"key": "value",
+								"value": "{{APIKey}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "key",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"newRndName = function() {",
+					"    const firstChain = [\"John\", \"Emma\", \"Michael\", \"Olivia\", \"James\", \"Sophia\", \"David\", \"Isabella\", \"Daniel\", \"Mia\"];",
+					"    const secondChain = [\"Smith\", \"Johnson\", \"Williams\", \"Brown\", \"Jones\", \"Garcia\", \"Miller\", \"Davis\", \"Taylor\", \"Wilson\"];",
+					"",
+					"    const randomFirstChain = firstChain[Math.floor(Math.random() * firstChain.length)];",
+					"    const randomSecondChain = secondChain[Math.floor(Math.random() * secondChain.length)];",
+					"",
+					"    return randomFirstChain + \" \" + randomSecondChain;",
+					"}",
+					"",
+					"newRndBoardName = function() {",
+					"    const firstChain = [",
+					"        \"Agile\",",
+					"        \"Dynamic\",",
+					"        \"Efficient\",",
+					"        \"Innovative\",",
+					"        \"Productive\",",
+					"        \"Robust\",",
+					"        \"Strategic\",",
+					"        \"Synchronized\",",
+					"        \"Versatile\",",
+					"        \"Collaborative\"",
+					"    ];",
+					"    const secondChain = [",
+					"        \"Board\",",
+					"        \"Workspace\",",
+					"        \"Hub\",",
+					"        \"Platform\",",
+					"        \"Engine\",",
+					"        \"Tool\",",
+					"        \"Kit\",",
+					"        \"System\",",
+					"        \"Framework\",",
+					"        \"Solution\"",
+					"    ];",
+					"",
+					"    const randomFirstChain = firstChain[Math.floor(Math.random() * firstChain.length)];",
+					"    const randomSecondChain = secondChain[Math.floor(Math.random() * secondChain.length)];",
+					"",
+					"    return randomFirstChain + \" \" + randomSecondChain;",
+					"}",
+					"",
+					"newRndListName = function() {",
+					"    const firstChain = [",
+					"        \"Important\",",
+					"        \"Critical\",",
+					"        \"Top\",",
+					"        \"Essential\",",
+					"        \"Key\",",
+					"        \"Vital\",",
+					"        \"Crucial\",",
+					"        \"Prominent\",",
+					"        \"Significant\",",
+					"        \"Pivotal\"",
+					"    ];",
+					"    const secondChain = [",
+					"        \"Tasks\",",
+					"        \"Goals\",",
+					"        \"Objectives\",",
+					"        \"Milestones\",",
+					"        \"Activities\",",
+					"        \"Items\",",
+					"        \"To-Dos\",",
+					"        \"Agenda\",",
+					"        \"Checklist\",",
+					"        \"Targets\"",
+					"    ];",
+					"",
+					"    const randomFirstChain = firstChain[Math.floor(Math.random() * firstChain.length)];",
+					"    const randomSecondChain = secondChain[Math.floor(Math.random() * secondChain.length)];",
+					"",
+					"    return randomFirstChain + \" \" + randomSecondChain;",
+					"}",
+					"",
+					"newRndCardName = function() {",
+					"    const firstChain = [",
+					"        \"Complete\",",
+					"        \"Review\",",
+					"        \"Update\",",
+					"        \"Implement\",",
+					"        \"Discuss\",",
+					"        \"Resolve\",",
+					"        \"Plan\",",
+					"        \"Execute\",",
+					"        \"Research\",",
+					"        \"Organize\"",
+					"    ];",
+					"    const secondChain = [",
+					"        \"Task\",",
+					"        \"Feature\",",
+					"        \"Issue\",",
+					"        \"Bug\",",
+					"        \"Requirement\",",
+					"        \"Idea\",",
+					"        \"Document\",",
+					"        \"User Story\",",
+					"        \"Design\",",
+					"        \"Test\"",
+					"    ];",
+					"",
+					"    const randomFirstChain = firstChain[Math.floor(Math.random() * firstChain.length)];",
+					"    const randomSecondChain = secondChain[Math.floor(Math.random() * secondChain.length)];",
+					"",
+					"    return randomFirstChain + \" \" + randomSecondChain;",
+					"}",
+					"",
+					"newRndColor = function() {",
+					"    const firstChain = [",
+					"        \"pink\",",
+					"        \"yellow\",",
+					"        \"lime\",",
+					"        \"blue\",",
+					"        \"black\",",
+					"        \"orange\",",
+					"        \"red\",",
+					"        \"purple\",",
+					"        \"sky\",",
+					"        \"green\"",
+					"    ];",
+					"",
+					"    const randomFirstChain = firstChain[Math.floor(Math.random() * firstChain.length)];",
+					"",
+					"    return randomFirstChain;",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
