@@ -1,0 +1,7 @@
+{
+    "baseUrl": "http://opencart.abstracta.us/index.php?route=common/home",
+	"env": {
+		"usersEmail": "eric.romero@col.vueling.com",
+		"recordLocatorsList": "PNR-GENERATOR-PRE.postman_environment.json"
+    }
+}
