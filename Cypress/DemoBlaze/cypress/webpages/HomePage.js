@@ -7,7 +7,8 @@ export class HomePage {
 	btnLogIn = () => cy.getId("login2");
 	btnContact = () => cy.contains("a", "Contact");
 	btnSignUp = () => cy.getId("signin2");
-	btnItem = (position) =>
+	btnItem = () => cy.get("a.hrefch");
+	btnItemByPosition = (position) =>
 		cy.get("a.hrefch[href='prod.html?idp_=" + position + "']");
 	btnLogout = () => cy.getId("logout2");
 	btnCategoryPhones = () => cy.get(`[onclick="byCat('phone')"]`);
@@ -19,8 +20,16 @@ export class HomePage {
 		this.btnLogIn().click();
 	}
 
-	selectItem(position) {
-		this.btnItem(position).click();
+	selectItemByPosition() {
+		cy.get("a.hrefch").then(($elements) => {
+			this.btnItemByPosition(
+				cy.getRandomNumberBetween(0, $elements.length)
+			).click();
+		});
+	}
+
+	selectItemFirstAvl() {
+		this.btnItem().first().click();
 	}
 
 	goToSignUpPage() {
