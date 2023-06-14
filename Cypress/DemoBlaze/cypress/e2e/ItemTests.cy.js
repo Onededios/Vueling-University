@@ -1,3 +1,7 @@
+import { CartPage } from "../webpages/CartPage";
+import { HomePage } from "../webpages/HomePage";
+import { ItemPage } from "../webpages/ItemPage";
+
 describe("ItemTests", () => {
 	const homePage = new HomePage();
 	const itemPage = new ItemPage();
@@ -8,18 +12,45 @@ describe("ItemTests", () => {
 	});
 
 	it("Verify to purchase an item", () => {
-		homePage.goToItemPage(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
 		itemPage.addItemToCart();
-		homePage.goToCartPage();
+		itemPage.goToCartPage();
 		cartPage.placeOrder();
 		cartPage.imgSuccess().should("be.visible");
 	});
 
 	it("Verify to add and drop an item form the cart", () => {
-		homePage.goToItemPage(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.dropFirstItem();
-		cartPage.btnDropFirstItem().should("not.exist");
+		cartPage.btnDropItem().should("not.exist");
+	});
+
+	it("Verify to purchase a phone", () => {
+		homePage.goToCategoryPhones();
+		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		itemPage.addItemToCart();
+		itemPage.goToCartPage();
+		cartPage.placeOrder();
+		cartPage.imgSuccess().should("be.visible");
+	});
+
+	it("Verify to purchase a laptop", () => {
+		homePage.goToCategoryLaptops();
+		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		itemPage.addItemToCart();
+		itemPage.goToCartPage();
+		cartPage.placeOrder();
+		cartPage.imgSuccess().should("be.visible");
+	});
+
+	it("Verify to purchase a monitor", () => {
+		homePage.goToCategoryMonitors();
+		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		itemPage.addItemToCart();
+		itemPage.goToCartPage();
+		cartPage.placeOrder();
+		cartPage.imgSuccess().should("be.visible");
 	});
 });

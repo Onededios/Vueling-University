@@ -18,7 +18,6 @@ module.exports = defineConfig({
 	port: null,
 	projectId: "weqmci",
 	reporter: "cypress-mochawesome-reporter",
-
 	reporterOptions: {
 		charts: true,
 		reportDir: "cypress/reports",
@@ -29,7 +28,6 @@ module.exports = defineConfig({
 		embeddedScreenshots: true,
 		inlineAssets: true,
 	},
-
 	requestTimeout: 10000,
 	responseTimeout: 30000,
 	screenshotsFolder: "cypress/screenshots",
@@ -44,11 +42,23 @@ module.exports = defineConfig({
 	viewportWidth: 1000,
 	waitForAnimations: true,
 	watchForFileChanges: true,
-
 	e2e: {
-		baseUrl: "https://www.demoblaze.com/",
+		// We've imported your old cypress plugins here.
+		// You may want to clean this up later by importing these.
 		setupNodeEvents(on, config) {
 			require("cypress-mochawesome-reporter/plugin")(on);
+			function getConfigurationByFile(file) {
+				const pathToConfigFile = path.resolve(
+					"./cypress/config",
+					`${file}.json`
+				);
+				return fs.readJson(pathToConfigFile);
+			}
+
+			const file = config.env.configFile || "pro";
+			return getConfigurationByFile(file);
 		},
+
+		baseUrl: "https://www.demoblaze.com/",
 	},
 });

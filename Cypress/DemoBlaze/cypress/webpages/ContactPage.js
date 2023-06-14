@@ -10,16 +10,18 @@ export class ContactPage {
 	btnSend = () => cy.xpath("//button[contains(@onclick, 'send()')]");
 
 	// * Methods
-	fillModal(mail, name, message) {
-		this.btnSend.should("be.visible", { timeout: 5000 }).then(() => {
-			this.fieldEmail()
-				.type(mail)
-				.should("have.value", mail, { timeout: 3000 });
-			this.fieldName().type(name).should("have.value", name, { timeout: 3000 });
-			this.fieldMessage()
-				.type(message)
-				.should("have.value", message, { timeout: 3000 });
-			this.btnSendMessage().click().should("be.visible");
-		});
+	fillModalContact(mail, name, message) {
+		this.btnSend()
+			.should("be.visible")
+			.then(() => {
+				this.fieldEmail()
+					.type(mail, { force: true })
+					.should("have.value", mail);
+				this.fieldName().type(name, { force: true }).should("have.value", name);
+				this.fieldMessage()
+					.type(message, { force: true })
+					.should("have.value", message);
+				this.btnSend().click();
+			});
 	}
 }

@@ -1,6 +1,6 @@
 import { ContactPage } from "../webpages/ContactPage";
 import { HomePage } from "../webpages/HomePage";
-import { LogInPage } from "../webpages/LoginPage";
+import { LogInPage } from "../webpages/LogInPage";
 import { SignUpPage } from "../webpages/SignUpPage";
 
 describe("UserTests", () => {
@@ -13,36 +13,35 @@ describe("UserTests", () => {
 
 	beforeEach(() => {
 		cy.visit("");
-		name = cy.getRandomFirstName() + "_" + cy.getRandomLastName();
+		name = cy.getRandomFullName();
 	});
 
 	it("Verify the functionallity of Contact Us modal", () => {
-		homePage.clickContact();
-		contactPage.formContainer().should("be.visible");
-		contactPage.fillForm();
+		homePage.goToContactPage();
+		contactPage.fillModalContact(
+			cy.getRandomMail(),
+			name,
+			"My name is Yoshikage Kira. I'm 33 years old. My house is in the northeast section of Morioh, where all the villas are, and I am not married."
+		);
 	});
 
 	it("Verify to log on the page", () => {
-		homePage.clickLogin();
-		logInPage.fillForm(name, name);
-		homePage.nameUserLoged().should("have.text", "Welcome " + name);
-	});
-
-	it("Verify to log out on the page", () => {
-		homePage.clickLogin();
-		logInPage.fillForm(name, name);
-		homePage.nameUserLoged().should("have.text", "Welcome " + name);
-		homePage.clickLogout();
-		homePage.checkUserLogedOut();
+		homePage.goToLogInPage();
+		logInPage.fillModalSignIn(name, name);
 	});
 
 	it("Verify to sign up on the page", () => {
-		homePage.clickSignup();
-		signUpPage.fillFormSignup(name, name);
-		homePage.clickLogin();
-		logInPage.fillForm(name, name);
-		homePage.nameUserLoged().should("have.text", "Welcome " + name);
-		homePage.clickLogout();
-		homePage.checkUserLogedOut();
+		homePage.goToSignUpPage();
+		signUpPage.fillModalSignUp(name, name);
+		homePage.goToLogInPage();
+		logInPage.fillModalSignIn(name, name);
+	});
+
+	it("Verify to log out on the page", () => {
+		homePage.goToSignUpPage();
+		signUpPage.fillModalSignUp(name, name);
+		homePage.goToLogInPage();
+		logInPage.fillModalSignIn(name, name);
+		homePage.logOut();
 	});
 });

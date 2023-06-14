@@ -9,9 +9,15 @@ export class SignUpPage {
 	btnSignUp = () => cy.get("button[onclick='register()']");
 
 	// * Methods
-	fillFormSignup(name, pass) {
-		this.fieldName().clear().type(name).should("have.value", name);
-		this.fieldPassword().clear().type(pass).should("have.value", pass);
+	fillModalSignUp(name, pass) {
+		this.fieldName()
+			.clear()
+			.type(name, { force: true })
+			.should("have.value", name);
+		this.fieldPassword()
+			.clear()
+			.type(pass, { force: true })
+			.should("have.value", pass);
 		this.btnSignUp().click().should("be.visible");
 	}
 }

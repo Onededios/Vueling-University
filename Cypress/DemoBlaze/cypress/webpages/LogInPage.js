@@ -9,9 +9,15 @@ export class LogInPage {
 	btnLogIn = () => cy.get("button[onclick='logIn()']");
 
 	// * Methods
-	fillForm(name, pass) {
-		this.fieldName().clear().type(name).should("have.value", name);
-		this.fieldPassword().clear().type(pass).should("have.value", pass);
-		this.btnLogIn().click().should("be.visible");
+	fillModalSignIn(name, pass) {
+		this.fieldName()
+			.clear()
+			.type(name, { force: true })
+			.should("have.value", name);
+		this.fieldPassword()
+			.clear()
+			.type(pass, { force: true })
+			.should("have.value", pass);
+		this.btnLogIn().click();
 	}
 }

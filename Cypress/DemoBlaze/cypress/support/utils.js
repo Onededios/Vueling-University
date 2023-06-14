@@ -1,7 +1,5 @@
 // ***********************************************
 
-import { random } from "cypress/types/lodash";
-
 cy.getFlightDate = () => {
 	const today = new Date();
 	let flightDate = new Date();
@@ -108,6 +106,10 @@ cy.getRandomNumber = () => {
 	return randomNumber;
 };
 
+cy.getRandomNumberBetween = (min, max) => {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 cy.getRandomFirstName = () => {
 	let firstNames = [
 		"John",
@@ -146,10 +148,10 @@ cy.getRandomFirstName = () => {
 		"Jacob",
 		"Victoria",
 	];
-	return firstNames[random.num(firstNames.length)];
+	return firstNames[cy.getRandomNumberBetween(0, firstNames.length - 1)];
 };
 
-cy.getRandomFirstName = () => {
+cy.getRandomLastName = () => {
 	let lastNames = [
 		"Smith",
 		"Johnson",
@@ -182,9 +184,68 @@ cy.getRandomFirstName = () => {
 		"Murphy",
 		"Rogers",
 	];
-	return lastNames[random.num(lastNames.length)];
+	return lastNames[cy.getRandomNumberBetween(0, lastNames.length - 1)];
 };
 
-cy.getRandomNumberBetween = (min, max) => {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+cy.getRandomFullName = () => {
+	return cy.getRandomFirstName() + " " + cy.getRandomLastName();
+};
+
+cy.getRandomMail = () => {
+	return cy.getRandomFirstName().toLowerCase() + "@mailinator.com";
+};
+
+cy.getRandomCityName = () => {
+	let cityNames = [
+		"Seattle",
+		"Denver",
+		"Portland",
+		"Austin",
+		"Atlanta",
+		"Sacramento",
+		"Nashville",
+		"Raleigh",
+		"Tucson",
+		"Charlotte",
+		"Albuquerque",
+		"Omaha",
+		"Memphis",
+		"Boise",
+		"Milwaukee",
+		"Reno",
+		"Spokane",
+		"Tulsa",
+	];
+	return cityNames[cy.getRandomNumberBetween(0, cityNames.length - 1)];
+};
+
+cy.getRandomStreetName = () => {
+	let streetNames = [
+		"Main Street",
+		"First Avenue",
+		"Oak Street",
+		"Elm Avenue",
+		"Maple Drive",
+		"Cedar Lane",
+		"Pine Street",
+		"Birch Avenue",
+		"Willow Drive",
+		"Spruce Lane",
+	];
+	return streetNames[cy.getRandomNumberBetween(0, streetNames.length - 1)];
+};
+
+cy.getRandomPostalCode = () => {
+	return (
+		"" +
+		getRandomNumber() +
+		getRandomNumber() +
+		getRandomNumber() +
+		getRandomNumber() +
+		getRandomNumber()
+	);
+};
+
+cy.typeTextWithDelay = (element, text) => {
+	cy.wrap(element).type(text, { delay: 100 });
 };
