@@ -311,9 +311,6 @@ cypress/e2e/examples/
 /mochawesome-report
 /mochawesome.html
 
-# Ignorar los archivos de Cypress que pueden contener información sensible
-/cypress/fixtures
-
 # Ignorar el archivo de ejemplo de Cypress
 /cypress/examples
 
