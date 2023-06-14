@@ -20,7 +20,7 @@ export class HomePage {
 		this.btnLogIn().click();
 	}
 
-	selectItemByPosition() {
+	selectItemRandom() {
 		cy.get("a.hrefch").then(($elements) => {
 			this.btnItemByPosition(
 				cy.getRandomNumberBetween(0, $elements.length)

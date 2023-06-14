@@ -12,7 +12,7 @@ describe("ItemTests", () => {
 	});
 
 	it("Verify to purchase an item", () => {
-		homePage.selectItemByPosition();
+		homePage.selectItemRandom();
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.placeOrder();
