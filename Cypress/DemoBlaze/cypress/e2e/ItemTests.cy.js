@@ -12,7 +12,7 @@ describe("ItemTests", () => {
 	});
 
 	it("Verify to purchase an item", () => {
-		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItemByPosition();
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.placeOrder();
@@ -20,7 +20,7 @@ describe("ItemTests", () => {
 	});
 
 	it("Verify to add and drop an item form the cart", () => {
-		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItemFirstAvl();
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.dropFirstItem();
@@ -29,7 +29,7 @@ describe("ItemTests", () => {
 
 	it("Verify to purchase a phone", () => {
 		homePage.goToCategoryPhones();
-		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItemFirstAvl();
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.placeOrder();
@@ -38,7 +38,7 @@ describe("ItemTests", () => {
 
 	it("Verify to purchase a laptop", () => {
 		homePage.goToCategoryLaptops();
-		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItemFirstAvl();
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.placeOrder();
@@ -47,7 +47,26 @@ describe("ItemTests", () => {
 
 	it("Verify to purchase a monitor", () => {
 		homePage.goToCategoryMonitors();
-		homePage.selectItem(cy.getRandomNumberBetween(1, 6));
+		homePage.selectItemFirstAvl();
+		itemPage.addItemToCart();
+		itemPage.goToCartPage();
+		cartPage.placeOrder();
+		cartPage.imgSuccess().should("be.visible");
+	});
+
+	it("Verify to purchase three different items", () => {
+		homePage.goToCategoryPhones();
+		homePage.selectItemFirstAvl();
+		itemPage.addItemToCart();
+
+		itemPage.goToHomePage();
+		homePage.goToCategoryMonitors();
+		homePage.selectItemFirstAvl();
+		itemPage.addItemToCart();
+
+		itemPage.goToHomePage();
+		homePage.goToCategoryLaptops();
+		homePage.selectItemFirstAvl();
 		itemPage.addItemToCart();
 		itemPage.goToCartPage();
 		cartPage.placeOrder();
