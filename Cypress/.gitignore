@@ -304,9 +304,6 @@ cypress/e2e/examples/
 # Ignorar el archivo de registro de error de Cypress
 /cypress/error.log
 
-# Ignorar cualquier archivo de configuración local de Cypress
-/cypress.json
-
 # Ignorar los directorios de generación de informes de Cypress
 /mochawesome-report
 /mochawesome.html
