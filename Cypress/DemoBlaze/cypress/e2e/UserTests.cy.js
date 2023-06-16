@@ -11,6 +11,8 @@ describe("UserTests", () => {
 
 	let name = "";
 
+	before(() => {});
+
 	beforeEach(() => {
 		cy.visit("");
 		name = cy.getRandomFullName();
@@ -44,4 +46,8 @@ describe("UserTests", () => {
 		logInPage.fillModalSignIn(name, name);
 		homePage.logOut();
 	});
+
+	after(() => {});
+
+	afterEach(() => {});
 });

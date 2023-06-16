@@ -245,7 +245,3 @@ cy.getRandomPostalCode = () => {
 		getRandomNumber()
 	);
 };
-
-cy.typeTextWithDelay = (element, text) => {
-	cy.wrap(element).type(text, { delay: 100 });
-};
