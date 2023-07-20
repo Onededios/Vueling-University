@@ -1,8 +1,18 @@
-{
-    "originCode": "BCN",
-    "destCode": "ATH",
-    "monthNum": 8,
-    "adtQTY": 2,
-    "chdQTY": 0,
-    "infQTY": 1
-}
+[
+    {
+        "originCode": "BCN",
+        "destCode": "ATH",
+        "monthNum": 8,
+        "adtQTY": 2,
+        "chdQTY": 0,
+        "infQTY": 1
+    },
+    {
+        "originCode": "BCN",
+        "destCode": "MAD",
+        "monthNum": 10,
+        "adtQTY": 2,
+        "chdQTY": 2,
+        "infQTY": 2
+    }
+]

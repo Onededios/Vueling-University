@@ -31,20 +31,24 @@ import addContext from "mochawesome/addContext";
 //   cy.once("test:after:run", (test) => addContext({ test }, context, `${screenshotsFolder}${{test}}/${imgValue}`))
 // });
 Cypress.Commands.add("addContext", (context) => {
-  cy.once("test:after:run", (test) => addContext({ test }, context));
+	cy.once("test:after:run", (test) => addContext({ test }, context));
 });
 Cypress.Commands.add("getId", (id) => {
-  // Command 'cy.getId' for search by Id
-  cy.get(`#${id}`);
+	// Command 'cy.getId' for search by Id
+	cy.get(`#${id}`);
 });
 
 Cypress.Commands.add("error", (text) => {
-  throw new Error(text);
+	throw new Error(text);
 });
 
 Cypress.Commands.add("addScreshotContext", (text) => {
-  cy.screenshot();
-  cy.addTestContext(text);
+	cy.screenshot();
+	cy.addTestContext(text);
 });
 
-//! Create after more commands for cypress
+//! Create next this comment more commands for cypress
+Cypress.Commands.add("goScreenshot", (title, dateTime, screenshotNum) => {
+	cy.screenshot(title + dateTime + screenshotNum);
+	cy.addContext("Screenshot taken. You can see it in ./cypress/screenshots");
+});

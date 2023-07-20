@@ -48,17 +48,12 @@ module.exports = defineConfig({
 		setupNodeEvents(on, config) {
 			require("cypress-mochawesome-reporter/plugin")(on);
 			function getConfigurationByFile(file) {
-				const pathToConfigFile = path.resolve(
-					"./cypress/config",
-					`${file}.json`
-				);
+				const pathToConfigFile = path.resolve("./cypress/config", `${file}.json`);
 				return fs.readJson(pathToConfigFile);
 			}
 
 			const file = config.env.configFile || "pro";
 			return getConfigurationByFile(file);
 		},
-
-		baseUrl: "https://tickets.vueling.com/",
 	},
 });
